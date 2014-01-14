@@ -1,4 +1,19 @@
 HappyFuntimeTrail::Application.routes.draw do
+  root 'pages#index'
+  get '/about' => 'pages#about'
+  get '/help' => 'pages#help'
+
+  resources :users
+  get '/signup' => 'users#new'
+
+  resources :sessions, only: [:new, :create, :destroy]
+  get '/signin' => 'sessions#new'
+  delete '/signout' => 'sessions#delete'
+
+  resources :trails do
+    resources :pin
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
