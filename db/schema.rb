@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114185225) do
+ActiveRecord::Schema.define(version: 20140114230939) do
 
   create_table "addresses", force: true do |t|
-    t.string "line1"
-    t.string "line2"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
+    t.string  "line1"
+    t.string  "line2"
+    t.string  "city"
+    t.string  "state"
+    t.string  "zip"
+    t.integer "pin_id"
   end
 
   create_table "contents", force: true do |t|
@@ -31,11 +32,6 @@ ActiveRecord::Schema.define(version: 20140114185225) do
     t.integer "latitude"
     t.integer "longitude"
     t.integer "stepnumber"
-  end
-
-  create_table "tag_trails", force: true do |t|
-    t.integer "trail_id"
-    t.integer "tag_id"
   end
 
   create_table "tags", force: true do |t|

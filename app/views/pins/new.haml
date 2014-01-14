@@ -1,0 +1,28 @@
+%script{src: '//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry,places', type: 'text/javascript'}
+%script{src: '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js', type: 'text/javascript'}
+
+%h1 Create A Trail
+<div style='width: 800px;'><div id="map" style='width: 800px; height: 400px;'></div></div>
+
+<script>
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+markers = handler.addMarkers([
+{
+"lat": 51.5008,
+"lng": 0.1247
+}
+]);
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
+
+google.maps.event.addListener(handler.getMap(), 'click', gmaps4rails_callback())
+});
+
+var marker = null;
+function gmaps4rails_callback() {
+/ handler.removeMarkers();
+if (marker != null) { marker.setMap(null); }
+google.maps.event.addListener(handler.getMap(), 'click', function(object){ marker = new google.maps.Marker({position: object.latLng, map: handler.getMap()});});
+}
+</script>
