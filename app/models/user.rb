@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_secure_password
   has_many :created_trails,
     class_name: 'Trail',
     foreign_key: 'creator_id'
@@ -13,6 +14,11 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :username, presence: true, length: {maximum: 30}, uniqueness: true
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}
+  validates :username, presence: true, 
+                      length: {maximum: 30}, 
+                      uniqueness: { case_sensitive: false } # is this redundant with line 12?
+  validates :email, presence: true, 
+                    format: {with: VALID_EMAIL_REGEX},
+                    uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 6}
 end
