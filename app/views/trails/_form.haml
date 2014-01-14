@@ -1,0 +1,13 @@
+= form_for @trail do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name
+  .form-group
+    = f.label :
+
+
+
+  - 4.times do
+      .field
+        = f.fields_for :todos, @todo_list.todos.build do |tf|
+          = tf.text_field :name

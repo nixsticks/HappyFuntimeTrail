@@ -11,7 +11,7 @@ HappyFuntimeTrail::Application.routes.draw do
   delete '/signout' => 'sessions#delete'
 
   resources :trails do
-    resources :pin
+    resources :pins
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
