@@ -34,11 +34,6 @@ ActiveRecord::Schema.define(version: 20140114230939) do
     t.integer "stepnumber"
   end
 
-  create_table "tag_trails", force: true do |t|
-    t.integer "trail_id"
-    t.integer "tag_id"
-  end
-
   create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
