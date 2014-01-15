@@ -1,0 +1,76 @@
+%link{href: '/apis/fusiontables/docs/samples/style/default.css', rel: 'stylesheet', type: 'text/css'} 
+%script{src: '//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry,places', type: 'text/javascript'}
+%script{src: '//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js', type: 'text/javascript'}
+
+%h1 Set Your Locations
+%input{type: "text", id: "pin"}
+%input{type: "button", value: "Find", id: "find"}
+
+<div style='width: 800px;'><div id="map" style='width: 800px; height: 400px;'></div></div>
+
+%script
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+markers = handler.addMarkers([
+{
+"lat": 51.5008,
+"lng": 0.1247
+}
+]);
+handler.bounds.extendWith(markers);
+handler.fitMapToBounds();
+
+google.maps.event.addListener(handler.getMap(), 'click', gmaps4rails_callback())
+});
+
+google.maps.event.addDomListener(document.getElementById('find'), 'click',
+  function() {
+    var pin = document.getElementById('pin').value;
+
+    if (pin) {
+      pin = pin.replace(/'/g, '\\\'');
+      var where = "'pin Name' CONTAINS IGNORING CASE '" +
+          pin + "'";
+
+      layer.setOptions({
+        query: {
+          select: locationColumn,
+          from: tableId,
+          where: where
+        }
+      });
+    }
+  });
+}
+
+function initAutoComplete(tableId) {
+  // Retrieve the unique pin names using GROUP BY workaround.
+  var queryText = encodeURIComponent(
+      "SELECT 'pin Name', COUNT() " +
+      'FROM ' + tableId + " GROUP BY 'pin Name'");
+  var query = new google.visualization.Query(
+      'http://www.google.com/fusiontables/gvizdata?tq='  + queryText);
+
+  query.send(function(response) {
+    var numRows = response.getDataTable().getNumberOfRows();
+
+    // Create the list of results for display of autocomplete.
+    var results = [];
+    for (var i = 0; i < numRows; i++) {
+      results.push(response.getDataTable().getValue(i, 0));
+    }
+
+    // Use the results to create the autocomplete options.
+    $('#pin').autocomplete({
+      source: results,
+      minLength: 2
+    });
+  });
+}
+
+/ var marker = null;
+/ function gmaps4rails_callback() {
+/ / handler.removeMarkers();
+/ if (marker != null) { marker.setMap(null); }
+/ google.maps.event.addListener(handler.getMap(), 'click', function(object){ marker = new google.maps.Marker({position: object.latLng, map: handler.getMap()});});
+}
