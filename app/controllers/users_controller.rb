@@ -9,8 +9,6 @@ class UsersController < ApplicationController
       redirect_to @user, notice: 'Your profile was succesfully created!'
     else
       render action: "new"
-      debugger
-      puts
     end
   end
 
