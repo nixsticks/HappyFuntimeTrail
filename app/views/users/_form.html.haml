@@ -1,16 +1,33 @@
-=form_for(@user) do |f|
-	.field 
-		= f.label :username
-		= f.text_field :username
+= form_for(@user) do |f| 
+	
+	-if @user.id.nil?
+		= f.label :username 
+		= f.text_field :username 
 
-	.field 
-		= f.label :first_name
-		= f.text_field :first_name
+	= f.label :email 
+	= f.text_field :email 
 
-	.field 
-		= f.label :last_name
-		= f.text_field :last_name
+	= f.label :first_name
+	= f.text_field :first_name
 
-	.actions
-		= f.submit 
+	= f.label :last_name
+	= f.text_field :last_name
 
+	-if @user.id.nil?
+		= f.label :password
+		= f.password_field :password 
+	-else 
+		= f.label :password, "Update password"
+		= f.password_field :password 
+
+	-if @user.id.nil?
+		= f.label :password_confirmation, "Confirm password" 
+		= f.password_field :password_confirmation
+	-else
+		= f.label :password_confirmation, "Confirm updated password" 
+		= f.password_field :password_confirmation
+
+	-if @user.id
+		= f.submit "Create my account"
+	-else
+		= f.submit "Update my profile"
