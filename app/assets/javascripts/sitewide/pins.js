@@ -75,7 +75,7 @@ function initialize() {
             infowindow.setContent(
               '<p>' + address + '</p>' +
               '<button id="setPin">Set Pin</button>'
-              )
+              );
             infowindow.open(map, currentMarker);
           }
           else {
@@ -95,6 +95,33 @@ function initialize() {
     searchBox.setBounds(bounds);
   });
 
+  google.maps.event.addListener(map,'click',function(event) {
+    geocoder.geocode({latLng: event.latLng}, function(results) {
+
+      if(currentMarker) {
+        currentMarker.setMap(null);
+      }
+
+      currentMarker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        title: results[0].formatted_address
+      });
+
+      if (results[0]) {
+        address = results[0].formatted_address;
+        infowindow.setContent(
+          '<p>' + address + '</p>' +
+          '<button id="setPin">Set Pin</button>'
+          );
+        infowindow.open(map, currentMarker);
+      }
+      else {
+        alert("Sorry, we couldn't determine the address of this location.")
+      }
+    });
+  });
+
   $(document).on("click", "#setPin", function(event){
     fillInputs('.address', address);
     fillInputs('.lat', currentMarker.getPosition().lat());
@@ -110,20 +137,6 @@ function fillInputs(classname, content) {
     }
   });
 }
-
-// google.maps.event.addListener(map,'click',function(event) {
-//     geocoder.geocode({latLng: event.latLng}, function(responses) {
-//       if (responses && responses.length > 0) {
-//         var infowindow = new google.maps.InfoWindow({content: '<p>hi</p>'})
-//         infowindow.open(map, event)
-//       }
-//       else {
-//         alert("Sorry, we couldn't determine the address of this location.")
-//       }
-//     });
-//     document.getElementById('lat').value = event.latLng.lat();
-//     document.getElementById('long').value = event.latLng.lng();
-//   });
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
