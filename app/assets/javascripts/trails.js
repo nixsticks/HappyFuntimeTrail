@@ -1,24 +1,38 @@
 var pins = $('.pin-data').data('pins');
+var latlngs = [];
 console.log(pins);
 
-// function initialize() {
-//   var pins = $('.pin-data').data('pins');
-//   for (var i = 0, pin, pin = pins[i], i++) {
-//     var latlng = new google.maps.LatLng
-//   }
+function initialize() {
+  var map = new google.maps.Map(document.getElementById('map-canvas'));
+  var infowindow = new google.maps.InfoWindow();
 
-//   var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-//   var mapOptions = {
-//     zoom: 4,
-//     center: myLatlng
-//   }
-//   var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  for (var i = 0, pin; pin = pins[i]; i++) {
+    var latlng = new google.maps.LatLng(pin.latitude, pin.longitude);
+    latlngs.push(latlng);
 
-//   var marker = new google.maps.Marker({
-//       position: myLatlng,
-//       map: map,
-//       title: 'Treasure Hunt!'
-//   });
-// }
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      title: 'Treasure Hunt!'
+    });
 
-// google.maps.event.addDomListener(window, 'load', initialize);
+    clickMarker(marker, pin);
+  }
+
+  var latlngBounds = new google.maps.LatLngBounds();
+  latlngs.forEach(function (n) {
+    latlngBounds.extend(n);
+  });
+  map.setCenter(latlngBounds.getCenter());
+  map.fitBounds(latlngBounds); 
+
+  function clickMarker(marker, pin) {
+    google.maps.event.addListener(marker,'click',function(e) {
+      currentMarker = marker;
+      infowindow.setContent('<p>' + pin.address + '</p>');
+      infowindow.open(map, marker);
+    });
+  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);

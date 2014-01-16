@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115220443) do
+ActiveRecord::Schema.define(version: 20140116153827) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 20140115220443) do
   end
 
   create_table "pins", force: true do |t|
-    t.integer "latitude"
-    t.integer "longitude"
     t.integer "stepnumber"
     t.string  "address"
     t.integer "trail_id"
+    t.decimal "latitude"
+    t.decimal "longitude"
   end
 
   create_table "tags", force: true do |t|
