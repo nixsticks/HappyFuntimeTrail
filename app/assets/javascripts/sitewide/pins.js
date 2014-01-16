@@ -13,6 +13,8 @@ function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+  var currentMarker;
+  var address;
 
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(40.7484, -73.9857),
@@ -66,23 +68,20 @@ function initialize() {
 
     for (var i = 0, marker; marker = markers[i]; i++) {
       google.maps.event.addListener(marker,'click',function(e) {
-        var marker = this;
+        currentMarker = this;
         geocoder.geocode({latLng: this.getPosition()}, function(results) {
           if (results[0]) {
+            address = results[0].formatted_address;
             infowindow.setContent(
-              '<p>' + results[0].formatted_address + '</p>' +
+              '<p>' + address + '</p>' +
               '<button id="setPin">Set Pin</button>'
               )
-            infowindow.open(map, marker);
-            fillInputs('.address', results[0].formatted_address);
-            // $('.address').val(results[0].formatted_address);
+            infowindow.open(map, currentMarker);
           }
           else {
             alert("Sorry, we couldn't determine the address of this location.")
           }
         });
-        fillInputs('.lat', this.getPosition().lat());
-        fillInputs('.long', this.getPosition().lng());
       });
     }
 
@@ -94,6 +93,12 @@ function initialize() {
   google.maps.event.addListener(map, 'bounds_changed', function() {
     var bounds = map.getBounds();
     searchBox.setBounds(bounds);
+  });
+
+  $(document).on("click", "#setPin", function(event){
+    fillInputs('.address', address);
+    fillInputs('.lat', currentMarker.getPosition().lat());
+    fillInputs('.long', currentMarker.getPosition().lng());
   });
 }
 
@@ -122,13 +127,9 @@ function fillInputs(classname, content) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-$(document).on("click", "#setPin", function(event){
-  alert("Pin set.");
-});
-
-$(document).ready(function(){
-  $("#more").click(function() {
-    number = "[" + $('.pingroup').size(); + "]"
-    $(".pins").append(["<div class='pingroup'><input class='lat' name='pins_attributes", number, "[latitude]'", "type='text'><input class='long' name='pins_attributes", number, "[longitude]'", "type='text'><input class='address' name='pins_attributes", number, "[address]'", "type='text'></div>"].join(""));
-  });  
-});
+// $(document).ready(function(){
+//   $("#more").click(function() {
+//     number = "[" + $('.pingroup').size(); + "]"
+//     $(".pins").append(["<div class='pingroup'><input class='lat' name='pins_attributes", number, "[latitude]'", "type='text'><input class='long' name='pins_attributes", number, "[longitude]'", "type='text'><input class='address' name='pins_attributes", number, "[address]'", "type='text'></div>"].join(""));
+//   });  
+// });
