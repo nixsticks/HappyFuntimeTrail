@@ -6,6 +6,7 @@ gem 'rails', '4.0.2'
 gem 'underscore-rails'
 gem 'debugger'
 gem 'nested_form'
+gem 'jquery-ui-rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

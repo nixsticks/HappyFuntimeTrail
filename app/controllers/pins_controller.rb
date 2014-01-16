@@ -20,4 +20,18 @@ class PinsController < ApplicationController
 
   def destroy
   end
+
+  def sort
+    params[:pin].each_with_index do |id, index|
+      Pin.update_all({stepnumber: index+1}, {id: id})
+    end
+    render nothing: true
+  end
+
+  def order
+    @trail = Trail.find(params[:trail_id]) 
+    @pins = @trail.pins.order(:stepnumber)
+    @message = "I hate everything"
+    render partial: 'trails/pin_div'
+  end
 end

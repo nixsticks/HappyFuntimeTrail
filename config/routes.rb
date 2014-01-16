@@ -11,8 +11,12 @@ HappyFuntimeTrail::Application.routes.draw do
   delete '/signout' => 'sessions#delete'
 
   resources :trails do
-    resources :pins
+    resources :pins do 
+      collection { post :sort }
+      collection { get :order }
+    end
   end
+  get '/trails/:id/order_pins' => 'trails#order_pins', as: :trail_order_pins
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
