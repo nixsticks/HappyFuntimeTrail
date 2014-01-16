@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114230939) do
+ActiveRecord::Schema.define(version: 20140115234230) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(version: 20140114230939) do
     t.integer "latitude"
     t.integer "longitude"
     t.integer "stepnumber"
+  end
+
+  create_table "tag_trails", force: true do |t|
+    t.integer "trail_id"
+    t.integer "tag_id"
   end
 
   create_table "tags", force: true do |t|
@@ -63,9 +68,11 @@ ActiveRecord::Schema.define(version: 20140114230939) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remember_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
