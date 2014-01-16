@@ -1,4 +1,4 @@
-= form_for @trail do |f|
+= nested_form_for @trail do |f|
   .field
     = f.label :name
     = f.text_field :name
@@ -9,9 +9,12 @@
   /   = f.hidden_field :creator_id, value: current_user.id, class: 'form-control'
   .form-group
     #pins
-      = f.fields_for :pins, @trail.pins.build do |pin|
-        = render 'pin_fields', :f => pin
-      .links
-        = link_to_add_association 'Add pin', f, :pins
+      - 3.times do
+        = f.fields_for :pins, @trail.pins.build do |pin|
+          = pin.text_field :latitude, class: "lat"
+          = pin.text_field :longitude, class: "long"
+          = pin.text_field :address, class: "address"
+          = pin.link_to_remove "Remove pin"
+      = f.link_to_add "Add pin", :pins
   .buttons
     = f.submit

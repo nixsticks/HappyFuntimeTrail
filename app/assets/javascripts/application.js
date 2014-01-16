@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require cocoon
+//= require jquery_nested_form
 //= require turbolinks
 //= require_tree ./sitewide
 //= require underscore

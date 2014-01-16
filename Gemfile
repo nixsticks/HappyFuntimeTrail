@@ -5,7 +5,7 @@ gem 'rails', '4.0.2'
 
 gem 'underscore-rails'
 gem 'debugger'
-gem 'cocoon'
+gem 'nested_form'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
