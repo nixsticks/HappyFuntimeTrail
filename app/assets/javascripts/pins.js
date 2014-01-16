@@ -115,6 +115,13 @@ function initialize() {
     fillInputs('.address', address);
     fillInputs('.lat', currentMarker.getPosition().lat());
     fillInputs('.long', currentMarker.getPosition().lng());
+    currentMarker.setMap(null);
+    new google.maps.Marker({
+      position: currentMarker.getPosition(),
+      map: map,
+      title: address
+    });
+    currentMarker = null;
   });
 }
 
