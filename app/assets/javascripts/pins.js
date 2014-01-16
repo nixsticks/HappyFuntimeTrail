@@ -86,7 +86,8 @@ function initialize() {
       newMarker = new google.maps.Marker({
         position: event.latLng,
         map: map,
-        title: results[0].formatted_address
+        title: results[0].formatted_address,
+        draggable: true
       });
 
       clickMarker(newMarker);
@@ -135,7 +136,6 @@ function initialize() {
         if (this.value == '') {
           $(this).val(content);
           $(this).addClass(String(permanentMarkers.indexOf(marker)));
-          console.log(permanentMarkers.indexOf(permanentMarker));
           return false;
         }
       });
