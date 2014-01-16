@@ -5,7 +5,7 @@
 
 #map-canvas
 
-%ul{id: "pins", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
+%ol{id: "pins", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
   - @pins.each do |pin|
     = content_tag_for(:li, pin) do
       = pin.address

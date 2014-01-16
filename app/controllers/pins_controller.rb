@@ -31,7 +31,6 @@ class PinsController < ApplicationController
   def order
     @trail = Trail.find(params[:trail_id]) 
     @pins = @trail.pins.order(:stepnumber)
-    @message = "I hate everything"
     render partial: 'trails/pin_div'
   end
 end

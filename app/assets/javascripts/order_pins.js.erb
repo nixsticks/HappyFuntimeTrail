@@ -5,32 +5,23 @@ $('#pins').sortable(
       $.get($('.dynamic').data('update-url'), function( data ) {
         $(".dynamic").html(data);
       });
+      setPins();
+      trail();
     }
   }
 );
 
-var pins = $('.pin-data').data('pins');
-console.log(pins);
+var pins;
 var latlngs = [];
 var markers = [];
 var infowindow = new google.maps.InfoWindow();
 var trailPath;
+var map;
 
 function initialize() {
-  var map = new google.maps.Map(document.getElementById('map-canvas'));
+  map = new google.maps.Map(document.getElementById('map-canvas'));
 
-  for (var i = 0, pin; pin = pins[i]; i++) {
-    var latlng = new google.maps.LatLng(pin.latitude, pin.longitude);
-    latlngs.push(latlng);
-
-    var marker = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title: 'Treasure Hunt!'
-    });
-
-    clickMarker(marker, pin);
-  }
+  setPins();
 
   var latlngBounds = new google.maps.LatLngBounds();
   latlngs.forEach(function (n) {
@@ -38,6 +29,40 @@ function initialize() {
   });
   map.setCenter(latlngBounds.getCenter());
   map.fitBounds(latlngBounds); 
+
+  trail();
+}
+
+function clickMarker(marker, pin) {
+  google.maps.event.addListener(marker,'click',function(e) {
+    infowindow.setContent('<p>' + pin.address + '</p>');
+    infowindow.open(map, marker);
+  });
+}
+
+function setPins() {
+  latlngs = [];
+  pins = $('.pin-data').data('pins');
+  for (var i = 0, pin; pin = pins[i]; i++) {
+    var latlng = new google.maps.LatLng(pin.latitude, pin.longitude);
+    latlngs.push(latlng);
+
+    var marker = new google.maps.Marker({
+      position: latlng,
+      map: map,
+      icon: "/assets/number_" + pin.stepnumber + ".png",
+      title: 'Treasure Hunt!'
+    });
+
+    clickMarker(marker, pin);
+  }
+}
+
+function trail() {
+  if (trailPath) {
+    trailPath.setMap(null);
+    trailPath = null;
+  }
 
   trailPath = new google.maps.Polyline({
     path: latlngs,
@@ -48,14 +73,6 @@ function initialize() {
   });
 
   trailPath.setMap(map);
-
-  function clickMarker(marker, pin) {
-    google.maps.event.addListener(marker,'click',function(e) {
-      currentMarker = marker;
-      infowindow.setContent('<p>' + pin.address + '</p>');
-      infowindow.open(map, marker);
-    });
-  }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
