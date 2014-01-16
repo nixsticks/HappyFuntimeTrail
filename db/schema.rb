@@ -36,11 +36,6 @@ ActiveRecord::Schema.define(version: 20140116153827) do
     t.decimal "longitude"
   end
 
-  create_table "tag_trails", force: true do |t|
-    t.integer "trail_id"
-    t.integer "tag_id"
-  end
-
   create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -70,11 +65,9 @@ ActiveRecord::Schema.define(version: 20140116153827) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remember_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
