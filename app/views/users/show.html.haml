@@ -3,9 +3,8 @@
 %ol
 - @user.created_trails.each do |trail|
 	%li
-		%p #{trail.name}
+		%p= link_to trail.name, trail
 		%ul
 			%li Description: #{trail.description}
 			%li Popularity: #{trail.popularity}
 			%li Length of Trail: #{trail.length}
-	

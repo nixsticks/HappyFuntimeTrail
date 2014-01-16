@@ -1,16 +1,36 @@
-=form_for(@user) do |f|
-	.field 
-		= f.label :username
-		= f.text_field :username
+= form_for(@user) do |f| 
+	
+	=render 'shared/error_messages'
+	
+	.form
+		-if @user.id.nil?
+			= f.label :username 
+			= f.text_field :username 
 
-	.field 
+		= f.label :email 
+		= f.text_field :email 
+
 		= f.label :first_name
 		= f.text_field :first_name
 
-	.field 
 		= f.label :last_name
 		= f.text_field :last_name
 
-	.actions
-		= f.submit 
+		-if @user.id.nil?
+			= f.label :password
+			= f.password_field :password 
+		-else 
+			= f.label :password, "Update password"
+			= f.password_field :password 
 
+		-if @user.id.nil?
+			= f.label :password_confirmation, "Confirm password" 
+			= f.password_field :password_confirmation
+		-else
+			= f.label :password_confirmation, "Confirm updated password" 
+			= f.password_field :password_confirmation
+
+		-if @user.id
+			= f.submit "Create my account"
+		-else
+			= f.submit "Update my profile"

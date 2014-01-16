@@ -4,12 +4,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       redirect_to @user, notice: 'Your profile was succesfully created!'
     else
       render action: "new"
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :first_name, :last_name, :email, :password, :password_confirmation)
   end
 
   def show
