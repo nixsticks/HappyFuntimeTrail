@@ -11,14 +11,16 @@ function initialize() {
   var infowindow = new google.maps.InfoWindow();
   var markers = [];
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDoubleClickZoom: true,
+    zoom: 16
   });
   var currentMarker;
   var address;
 
   var defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(40.7484, -73.9857),
-      new google.maps.LatLng(40.8484, -73.1587));
+      new google.maps.LatLng(40.7684, -73.1587));
   map.fitBounds(defaultBounds);
 
   // Create the search box and link it to the UI element.
@@ -95,7 +97,7 @@ function initialize() {
     searchBox.setBounds(bounds);
   });
 
-  google.maps.event.addListener(map,'click',function(event) {
+  google.maps.event.addListener(map,'dblclick',function(event) {
     geocoder.geocode({latLng: event.latLng}, function(results) {
 
       if(currentMarker) {
