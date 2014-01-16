@@ -25,6 +25,9 @@ class TrailsController < ApplicationController
     @trails = Trail.all
   end
 
+  def order_pins
+  end
+
   def edit
     @trail = Trail.find(params[:id])
   end
