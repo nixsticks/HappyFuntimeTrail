@@ -1,0 +1,6 @@
+.nested-fields
+  .field
+    = f.text_field :latitude, class: "lat"
+    = f.text_field :longitude, class: "long"
+    = f.text_field :address, class: "address"
+    = link_to_remove_association "remove pin", f

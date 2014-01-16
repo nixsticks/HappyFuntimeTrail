@@ -1,6 +1,21 @@
 #map-canvas
 
 %input{id: "pin", class: "controls", type: "text", placeholder: "Search"}
-%input{id: "lat", type: "text"}
-%input{id: "long", type: "text"}
-%input{id: "address", type: "text"}
+%form{action: "/trails", method: "post"}
+  .pins
+    .pingroup
+      %input{class: "lat", name: "pins_attributes[0][latitude]", type: "text"}
+      %input{class: "long", name: "pins_attributes[0][longitude]", type: "text"}
+      %input{class: "address", name: "pins_attributes[0][address]", type: "text"}
+    .pingroup
+      %input{class: "lat", name: "pins_attributes[1][latitude]", type: "text"}
+      %input{class: "long", name: "pins_attributes[1][longitude]", type: "text"}
+      %input{class: "address", name: "pins_attributes[1][address]",type: "text"}
+    .pingroup
+      %input{class: "lat", name: "pins_attributes[2][latitude]", type: "text"}
+      %input{class: "long", name: "pins_attributes[2][longitude]", type: "text"}
+      %input{class: "address", name: "pins_attributes[2][address]",type: "text"}
+  .buttons
+    %button{id: "more"}
+      Add More Pins
+    %input{type: "submit", value:"Create Trail"}

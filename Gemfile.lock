@@ -31,6 +31,7 @@ GEM
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     builder (3.1.4)
+    cocoon (1.2.5)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -47,8 +48,6 @@ GEM
     debugger-ruby_core_source (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
-    geocoder (1.1.9)
-    gmaps4rails (2.1.1)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -135,10 +134,9 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass
+  cocoon
   coffee-rails (~> 4.0.0)
   debugger
-  geocoder
-  gmaps4rails
   haml
   haml-rails
   jbuilder (~> 1.2)

@@ -1,19 +1,17 @@
 = form_for @trail do |f|
-  .form-group
+  .field
     = f.label :name
     = f.text_field :name
-  .form-group
-    = f.label :length
-    = f.number_field_tag 'Number of pins', nil, :in => 1...20
-  .form_group
+  .field
     = f.label :description
     = f.text_area :description
   / .form_group
   /   = f.hidden_field :creator_id, value: current_user.id, class: 'form-control'
-  = f.submit
-
-
-  - 4.times do
-      .field
-        = f.fields_for :todos, @todo_list.todos.build do |tf|
-          = tf.text_field :name
+  .form-group
+    #pins
+      = f.fields_for :pins, @trail.pins.build do |pin|
+        = render 'pin_fields', :f => pin
+      .links
+        = link_to_add_association 'Add pin', f, :pins
+  .buttons
+    = f.submit

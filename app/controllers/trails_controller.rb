@@ -4,7 +4,6 @@ class TrailsController < ApplicationController
 
   def new
     @trail = Trail.new
-    @pin = Pin.new
   end
 
   def create
@@ -44,5 +43,9 @@ class TrailsController < ApplicationController
   def destroy
     Trail.find(params[:id]).destroy
     redirect_to trails_path
+  end
+
+  def trail_params
+    params.require(:trail).permit(:name, :length, :description, :pins_attributes => [:latitude, :longitude, :address])
   end
 end

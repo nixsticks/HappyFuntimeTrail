@@ -1,5 +1,6 @@
 class PinsController < ApplicationController
   def new
+    @trail = Trail.find(params[:id])
   end
 
   def create
