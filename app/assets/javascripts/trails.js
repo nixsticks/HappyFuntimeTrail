@@ -26,6 +26,16 @@ function initialize() {
   map.setCenter(latlngBounds.getCenter());
   map.fitBounds(latlngBounds); 
 
+  var trailPath = new google.maps.Polyline({
+    path: latlngs,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  trailPath.setMap(map);
+
   function clickMarker(marker, pin) {
     google.maps.event.addListener(marker,'click',function(e) {
       currentMarker = marker;
