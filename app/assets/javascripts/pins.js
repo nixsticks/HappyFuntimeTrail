@@ -11,6 +11,7 @@ function initialize() {
   var newMarker;
   var currentMarker;
   var address;
+  var permanentMarkers = [];
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -112,27 +113,42 @@ function initialize() {
   };
 
   $(document).on("click", "#setPin", function(event){
-    fillInputs('.address', address);
-    fillInputs('.lat', currentMarker.getPosition().lat());
-    fillInputs('.long', currentMarker.getPosition().lng());
     currentMarker.setMap(null);
-    new google.maps.Marker({
+    var permanentMarker = new google.maps.Marker({
       position: currentMarker.getPosition(),
       map: map,
       title: address
     });
+    permanentMarkers.push(permanentMarker);
+    fillInputs('.address', address, permanentMarker);
+    fillInputs('.lat', currentMarker.getPosition().lat(), permanentMarker);
+    fillInputs('.long', currentMarker.getPosition().lng(), permanentMarker);
     currentMarker = null;
-  });
-}
 
-function fillInputs(classname, content) {
-  $(classname).each(function() {
-    if (this.value == '') {
-      $(this).val(content);
-      return false;
+    google.maps.event.addListener(permanentMarker,'click',function(e) {
+        infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
+        infowindow.open(map, permanentMarker);
+    });
+
+    function fillInputs(classname, content, marker) {
+      $(classname).each(function() {
+        if (this.value == '') {
+          $(this).val(content);
+          $(this).addClass(String(permanentMarkers.indexOf(marker)));
+          console.log(permanentMarkers.indexOf(permanentMarker));
+          return false;
+        }
+      });
     }
   });
-}
 
+  $(document).on("click", "#removePin", function(event){
+    classname = $(this).attr("class")
+    $("." + classname).each(function() {
+      this.remove();
+    });
+    permanentMarkers[classname].setMap(null);
+  });
+}
 
 google.maps.event.addDomListener(window, 'load', initialize);
