@@ -14,23 +14,18 @@ function initialize() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     disableDoubleClickZoom: true,
     center: new google.maps.LatLng(40.7484, -73.9857),
-    zoom: 13
+    zoom: 15
   });
   var newMarker;
   var currentMarker;
   var address;
 
-  // var defaultBounds = new google.maps.LatLngBounds(
-  //     new google.maps.LatLng(40.7484, -73.9857),
-  //     new google.maps.LatLng(40.7684, -73.1587));
-  // map.fitBounds(defaultBounds);
-
- //  if (navigator.geolocation) {
- //    navigator.geolocation.getCurrentPosition(function (position) {
- //     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- //     map.setCenter(initialLocation);
- //   });
- // }
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+     map.setCenter(initialLocation);
+   });
+ }
 
   // Create the search box and link it to the UI element.
   var input = /** @type {HTMLInputElement} */(
@@ -73,9 +68,6 @@ function initialize() {
 
       bounds.extend(place.geometry.location);
     }
-
-    // var all_markers = $('#map_canvas').gmap('get','markers');
-    // console.log(all_markers);
 
     for (var i = 0, marker; marker = markers[i]; i++) {
       clickMarker(marker);
@@ -145,10 +137,3 @@ function fillInputs(classname, content) {
 
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-// $(document).ready(function(){
-//   $("#more").click(function() {
-//     number = "[" + $('.pingroup').size(); + "]"
-//     $(".pins").append(["<div class='pingroup'><input class='lat' name='pins_attributes", number, "[latitude]'", "type='text'><input class='long' name='pins_attributes", number, "[longitude]'", "type='text'><input class='address' name='pins_attributes", number, "[address]'", "type='text'></div>"].join(""));
-//   });  
-// });

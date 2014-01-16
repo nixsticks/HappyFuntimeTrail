@@ -1,18 +1,27 @@
 function initialize() {
-
+  var geocoder = new google.maps.Geocoder();
+  var infowindow = new google.maps.InfoWindow();
   var markers = [];
   var map = new google.maps.Map(document.getElementById('map-canvas'), {
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDoubleClickZoom: true,
+    center: new google.maps.LatLng(40.7484, -73.9857),
+    zoom: 15
   });
+  var newMarker;
+  var currentMarker;
+  var address;
 
-  var defaultBounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(-33.8902, 151.1759),
-      new google.maps.LatLng(-33.8474, 151.2631));
-  map.fitBounds(defaultBounds);
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+     map.setCenter(initialLocation);
+   });
+ }
 
   // Create the search box and link it to the UI element.
   var input = /** @type {HTMLInputElement} */(
-      document.getElementById('pac-input'));
+      document.getElementById('pin'));
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   var searchBox = new google.maps.places.SearchBox(
@@ -52,6 +61,10 @@ function initialize() {
       bounds.extend(place.geometry.location);
     }
 
+    for (var i = 0, marker; marker = markers[i]; i++) {
+      clickMarker(marker);
+    }
+
     map.fitBounds(bounds);
   });
 
@@ -61,6 +74,58 @@ function initialize() {
     var bounds = map.getBounds();
     searchBox.setBounds(bounds);
   });
+
+  google.maps.event.addListener(map,'dblclick',function(event) {
+    geocoder.geocode({latLng: event.latLng}, function(results) {
+
+      if(newMarker) {
+        newMarker.setMap(null);
+      }
+
+      newMarker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        title: results[0].formatted_address
+      });
+
+      clickMarker(newMarker);
+    });
+  });
+
+  function clickMarker(marker) {
+    google.maps.event.addListener(marker,'click',function(e) {
+      currentMarker = marker;
+      geocoder.geocode({latLng: this.getPosition()}, function(results) {
+        if (results[0]) {
+          address = results[0].formatted_address;
+          infowindow.setContent(
+            '<p>' + address + '</p>' +
+            '<button id="setPin">Set Pin</button>'
+            );
+          infowindow.open(map, marker);
+        }
+        else {
+          alert("Sorry, we couldn't determine the address of this location.")
+        }
+      });
+    });
+  };
+
+  $(document).on("click", "#setPin", function(event){
+    fillInputs('.address', address);
+    fillInputs('.lat', currentMarker.getPosition().lat());
+    fillInputs('.long', currentMarker.getPosition().lng());
+  });
 }
+
+function fillInputs(classname, content) {
+  $(classname).each(function() {
+    if (this.value == '') {
+      $(this).val(content);
+      return false;
+    }
+  });
+}
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
