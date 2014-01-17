@@ -70,14 +70,13 @@ function trail() {
   trailPath.setMap(map);
 }
 
-$('#pins').sortable(
-  {
+$('#pins').sortable({
     update: function() {
       $.post($(this).data('update-url'), $(this).sortable('serialize'));
-      clearPins();
-      markers = [];
       $.get($('.dynamic').data('update-url'), function( data ) {
         $(".dynamic").html(data);
+        clearPins();
+        markers = [];
         setPins();
         trail();
       });
