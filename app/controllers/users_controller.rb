@@ -42,6 +42,25 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def current
+    # @user = current_user
+    # @current = @user.current_pin
+  end
+
+  def checkin
+    # latitude = params(:latitude)
+    # longitude = params(:longitude)
+    # user = current_user
+    # if user.latitude == latitude && user.longitude == longitude
+    #   redirect_to trail_pin_path(user.current_trail, user.current_pin)
+    # else
+    #   flash.now[:error] = "You're not there yet!"
+    #   render 'current'
+    # end
+    #will show you your target latitude and longitude. will have hidden inputs. hidden inputs will be geocoded. maybe will have constant async post telling you how close you are to the place? or maybe constantly telling you what lat/long you are at
+    #use watchPosition()!!!!
+  end
+
   private
 
     def user_params
