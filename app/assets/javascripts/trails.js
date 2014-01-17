@@ -2,7 +2,7 @@ var pins = $('.pin-data').data('pins');
 var latlngs = [];
 
 function initialize() {
-  var map = new google.maps.Map(document.getElementById('map-canvas'));
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {mapTypeId: google.maps.MapTypeId.HYBRID});
   var infowindow = new google.maps.InfoWindow();
 
   for (var i = 0, pin; pin = pins[i]; i++) {
