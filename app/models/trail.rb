@@ -7,6 +7,9 @@ class Trail < ActiveRecord::Base
   has_many :followers,
     class_name: 'User',
     through: :trail_followers
+  has_many :current_users,
+    class_name: 'User',
+    foreign_key: :current_trail_id
   has_many :pins, dependent: :destroy
   accepts_nested_attributes_for :pins, :reject_if => proc { |pin| pin[:address].blank? }, allow_destroy: true
 

@@ -30,7 +30,6 @@ function clickMarker(marker, pin) {
 function setPins() {
   latlngs = [];
   pins = $('.pin-data').data('pins');
-  console.log(pins);
   for (var i = 0, pin; pin = pins[i]; i++) {
     var latlng = new google.maps.LatLng(pin.latitude, pin.longitude);
     latlngs.push(latlng);
@@ -64,7 +63,7 @@ function trail() {
     geodesic: true,
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
-    strokeWeight: 1
+    strokeWeight: 2
   });
 
   trailPath.setMap(map);

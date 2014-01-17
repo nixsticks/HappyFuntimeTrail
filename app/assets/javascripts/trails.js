@@ -30,7 +30,7 @@ function initialize() {
     geodesic: true,
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
-    strokeWeight: 1
+    strokeWeight: 2
   });
 
   trailPath.setMap(map);

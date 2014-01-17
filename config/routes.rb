@@ -3,6 +3,7 @@ HappyFuntimeTrail::Application.routes.draw do
   get '/about' => 'pages#about'
   get '/help' => 'pages#help'
 
+  get '/current' => 'users#current', as: :current
   resources :users
   get '/signup' => 'users#new'
 
@@ -16,6 +17,9 @@ HappyFuntimeTrail::Application.routes.draw do
       collection { get :order }
     end
   end
+
+  post '/trails/:id/start' => 'trails#start', as: :trail_start
+  
   get '/trails/:id/order_pins' => 'trails#order_pins', as: :trail_order_pins
 
   # The priority is based upon order of creation: first created -> highest priority.

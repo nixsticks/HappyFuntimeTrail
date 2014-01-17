@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :followed_trails,
     source: :trail,
     through: :trail_followers
+  belongs_to :current_trail,
+    class_name: 'Trail'
+  belongs_to :current_pin,
+    class_name: 'Pin'
 
   before_save { self.email = email.downcase }  
   before_save { self.username = username.downcase }

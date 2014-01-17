@@ -21,6 +21,13 @@ class TrailsController < ApplicationController
     @trail = Trail.find(params[:id])
   end
 
+  def start
+    user = current_user
+    trail = Trail.find(params[:id])
+    user.update_attributes(current_trail_id: trail.id, current_pin_id: trail.pins.first.id)
+    redirect_to current_path
+  end
+
   def index
     @trails = Trail.all
   end
@@ -51,6 +58,6 @@ class TrailsController < ApplicationController
   end
 
   def trail_params
-    params.require(:trail).permit(:name, :length, :description, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
+    params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
   end
 end

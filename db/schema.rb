@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116153827) do
+ActiveRecord::Schema.define(version: 20140117202250) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 20140116153827) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
+    t.integer  "current_trail_id"
+    t.integer  "current_pin_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
