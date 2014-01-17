@@ -78,19 +78,22 @@ function initialize() {
 
   google.maps.event.addListener(map,'dblclick',function(event) {
     geocoder.geocode({latLng: event.latLng}, function(results) {
+      $('.address').each(function() {
+        if (this.value == '') {
+          if(newMarker) {
+            newMarker.setMap(null);
+          }
 
-      if(newMarker) {
-        newMarker.setMap(null);
-      }
+          newMarker = new google.maps.Marker({
+            position: event.latLng,
+            map: map,
+            title: results[0].formatted_address,
+            draggable: true
+          });
 
-      newMarker = new google.maps.Marker({
-        position: event.latLng,
-        map: map,
-        title: results[0].formatted_address,
-        draggable: true
+          clickMarker(newMarker);
+        }
       });
-
-      clickMarker(newMarker);
     });
   });
 
@@ -118,6 +121,7 @@ function initialize() {
     var permanentMarker = new google.maps.Marker({
       position: currentMarker.getPosition(),
       map: map,
+      icon: '<%= asset_path "star-3.png" %>',
       title: address
     });
     permanentMarkers.push(permanentMarker);

@@ -10,7 +10,7 @@ class TrailsController < ApplicationController
     @trail = Trail.new(trail_params)
     if @trail.save
       flash[:success] = "Trail created!"
-      redirect_to @trail
+      redirect_to trail_order_pins_path(@trail)
     else
       flash.now[:danger] = "Unable to save trail."
       render 'new'
@@ -23,6 +23,11 @@ class TrailsController < ApplicationController
 
   def index
     @trails = Trail.all
+  end
+
+  def order_pins
+    @trail = Trail.find(params[:id])
+    @pins = @trail.pins.order(:stepnumber)
   end
 
   def edit
