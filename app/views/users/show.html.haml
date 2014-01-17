@@ -1,4 +1,7 @@
 %h1= @user.username
+
+-if flash[:success]
+	%p{class: "success"}= flash[:success]
 %h3 My trails:
 %ol
 - @user.created_trails.each do |trail|
