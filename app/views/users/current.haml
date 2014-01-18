@@ -1,10 +1,21 @@
+-if flash[:error]
+  %p{class: "error"}= flash[:error]
 %h1 Current Position
-%h3 Latitude
-#latitude
-%h3 Longitude
-#longitude
+%p
+  Latitude:
+  %span{id: "latitude"}
+%p
+  Longitude:
+  %span{id: "longitude"}
+%p
+  Target latitude: #{@pin.latitude}
+%p
+  Target longitude: #{@pin.longitude}
 
-%button Check In
+= form_tag checkin_path, method: :post do
+  %input{type: "hidden", id: "latitudeinput", name: "latitude"}
+  %input{type: "hidden", id: "longitudeinput", name: "longitude"}
+  %input{type: "submit", value: "Check in"} 
 %button Abandon Hope
 
 = javascript_include_tag params[:controller]

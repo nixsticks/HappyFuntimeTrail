@@ -13,6 +13,8 @@ function getLocation() {
 function showPosition(position) {
   lat.html(position.coords.latitude);
   lng.html(position.coords.longitude);
+  $("#latitudeinput").val(position.coords.latitude);
+  $("#longitudeinput").val(position.coords.longitude);
 }
 
 getLocation();
