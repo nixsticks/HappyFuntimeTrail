@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def correct_location?(latitude, longitude)
-    self.current_pin.latitude == params[:latitude] && @pin.longitude == params[:longitude]
+    self.current_pin.latitude == latitude && self.current_pin.longitude == longitude
   end
 
   private 

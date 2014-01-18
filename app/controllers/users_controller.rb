@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   def checkin
     @user = current_user
     @pin = @user.current_pin
-    if correct_location?(params[:latitude], params[:longitude])
+    if @user.correct_location?(params[:latitude], params[:longitude])
       @user.update_attribute(:current_pin_id, @pin.id + 1)
       redirect_to trail_pin_path(@user.current_trail, @pin)
     else
