@@ -23,8 +23,8 @@ class TrailsController < ApplicationController
 
   def start
     @user = current_user
-    @trail = Trail.find(params[:id])
-    if @user.update_attribute(:current_trail_id, @trail.id) && @user.update_attribute(:current_pin_id, @trail.pins.first.id)
+    trail = Trail.find(params[:id])
+    if @user.start(trail)
       redirect_to current_path
     else
       flash.now[:error] = 'Something went wrong!'

@@ -49,10 +49,11 @@ class UsersController < ApplicationController
 
   def checkin
     @user = current_user
+    @trail = current_user.current_trail
     @pin = @user.current_pin
     if @user.correct_location?(params[:latitude], params[:longitude])
-      @user.update_attribute(:current_pin_id, @pin.id + 1)
-      redirect_to trail_pin_path(@user.current_trail, @pin)
+      @trail.next_pin(@pin)
+      redirect_to trail_pin_path(@trail, @pin)
     else
       flash[:error] = "You're not there yet!"
       render 'current'

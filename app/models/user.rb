@@ -39,7 +39,11 @@ class User < ActiveRecord::Base
   end
 
   def correct_location?(latitude, longitude)
-    self.current_pin.latitude == latitude && self.current_pin.longitude == longitude
+    self.current_pin.latitude == latitude.to_f && self.current_pin.longitude == longitude.to_f
+  end
+
+  def start(trail)
+    update_attribute(:current_trail_id, trail.id) && update_attribute(:current_pin_id, trail.pins.first.id)
   end
 
   private 
