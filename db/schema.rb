@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117202250) do
+ActiveRecord::Schema.define(version: 20140120185004) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 20140117202250) do
     t.integer "trail_id"
     t.decimal "latitude"
     t.decimal "longitude"
+    t.string  "text"
+    t.string  "video"
+    t.string  "audio"
+    t.string  "photo"
   end
 
   create_table "tags", force: true do |t|
