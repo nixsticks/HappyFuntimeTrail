@@ -1,0 +1,17 @@
+
+=render "pin_div"
+
+%h1 Add your buried treasure
+
+#map-canvas
+
+%ol 
+  -@trail.pins.each do |pin|
+    %li 
+      =pin.address
+      =form_for pin, url: trail_pin_path(@trail, pin), method: "put" do |f|
+        =f.text_area :text
+        %br
+        =f.submit "Add text to pin!"
+
+=javascript_include_tag :add_media

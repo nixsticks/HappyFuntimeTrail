@@ -18,6 +18,9 @@ class PinsController < ApplicationController
   end
 
   def update
+    @pin = Pin.find(params[:id])
+    @pin.update_attributes(pin_params)
+    render nothing: true  #AJAX YAY
   end
 
   def destroy
@@ -35,4 +38,10 @@ class PinsController < ApplicationController
     @pins = @trail.pins.order(:stepnumber)
     render partial: 'trails/pin_div'
   end
+
+  private 
+
+    def pin_params
+      params.require(:pin).permit(:text, :audio, :video, :photo, :stepnumber, :address, :latitude, :longitude)
+    end
 end

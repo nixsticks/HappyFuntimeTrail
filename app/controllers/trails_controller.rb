@@ -61,7 +61,15 @@ class TrailsController < ApplicationController
     redirect_to trails_path
   end
 
-  def trail_params
-    params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
+  def add_media
+    @trail = Trail.find(params[:id])
+    @pins = @trail.pins
   end
+
+  private 
+
+    def trail_params
+      params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
+    end
+
 end

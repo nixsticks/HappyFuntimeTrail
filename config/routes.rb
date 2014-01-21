@@ -23,6 +23,7 @@ HappyFuntimeTrail::Application.routes.draw do
   
   get '/trails/:id/order_pins' => 'trails#order_pins', as: :trail_order_pins
 
+  get '/trails/:id/add_media' => 'trails#add_media', as: :trail_add_media
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
