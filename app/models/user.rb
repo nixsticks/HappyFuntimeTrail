@@ -38,6 +38,14 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def correct_location?(latitude, longitude)
+    self.current_pin.latitude == latitude.to_f && self.current_pin.longitude == longitude.to_f
+  end
+
+  def start(trail)
+    update_attribute(:current_trail_id, trail.id) && update_attribute(:current_pin_id, trail.pins.first.id)
+  end
+
   private 
 
     def create_remember_token

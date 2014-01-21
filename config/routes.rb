@@ -6,6 +6,7 @@ HappyFuntimeTrail::Application.routes.draw do
   get '/current' => 'users#current', as: :current
   resources :users
   get '/signup' => 'users#new'
+  post '/checkin' => 'users#checkin', as: :checkin
 
   resources :sessions, only: [:new, :create, :destroy]
   get '/signin' => 'sessions#new'

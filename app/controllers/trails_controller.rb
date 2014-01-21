@@ -22,10 +22,14 @@ class TrailsController < ApplicationController
   end
 
   def start
-    user = current_user
+    @user = current_user
     trail = Trail.find(params[:id])
-    user.update_attributes(current_trail_id: trail.id, current_pin_id: trail.pins.first.id)
-    redirect_to current_path
+    if @user.start(trail)
+      redirect_to current_path
+    else
+      flash.now[:error] = 'Something went wrong!'
+      render 'show'
+    end
   end
 
   def index
