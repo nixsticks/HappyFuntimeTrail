@@ -42,6 +42,15 @@ class PinsController < ApplicationController
   private 
 
     def pin_params
-      params.require(:pin).permit(:text, :audio, :video, :photo, :stepnumber, :address, :latitude, :longitude)
+      params.require(:pin).permit(
+        :stepnumber,
+        :address,
+        :latitude,
+        :longitude,
+        :texts_attributes => [:id, :content, :user_id, :pin_id],
+        :images_attributes => [:id, :user_id, :pin_id, :attachment],
+        :audios_attributes => [:id, :user_id, :pin_id, :attachment],
+        :videos_attributes => [:id, :user_id, :pin_id, :attachment]
+      )
     end
 end

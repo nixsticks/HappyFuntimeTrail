@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121161843) do
+ActiveRecord::Schema.define(version: 20140121164915) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -51,16 +51,11 @@ ActiveRecord::Schema.define(version: 20140121161843) do
   end
 
   create_table "pins", force: true do |t|
-    t.integer  "stepnumber"
-    t.string   "address"
-    t.integer  "trail_id"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
-    t.string   "text"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.integer "stepnumber"
+    t.string  "address"
+    t.integer "trail_id"
+    t.decimal "latitude"
+    t.decimal "longitude"
   end
 
   create_table "tags", force: true do |t|

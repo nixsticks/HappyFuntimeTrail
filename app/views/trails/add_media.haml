@@ -10,8 +10,31 @@
     %li 
       =pin.address
       =form_for pin, url: trail_pin_path(@trail, pin), method: "put" do |f|
-        =f.text_area :text
+        .field
+          = f.fields_for :texts, pin.texts.build do |text|
+            = text.label 'Text'
+            %br
+            = text.text_area :content
+            = text.hidden_field :user_id, value: current_user.id, class: 'form-control'
+        .field
+          = f.fields_for :images, pin.images.build do |image|
+            = image.label 'Image'
+            %br
+            = image.file_field :attachment
+            = image.hidden_field :user_id, value: current_user.id, class: 'form-control'
+        .field
+          = f.fields_for :audios, pin.audios.build do |audio|
+            = audio.label 'Audio'
+            %br
+            = audio.file_field :attachment
+            = audio.hidden_field :user_id, value: current_user.id, class: 'form-control'
+        .field
+          = f.fields_for :videos, pin.videos.build do |video|
+            = video.label 'Video'
+            %br
+            = video.file_field :attachment
+            = video.hidden_field :user_id, value: current_user.id, class: 'form-control'
         %br
-        =f.submit "Add text to pin!"
+        =f.submit "Add media!"
 
 =javascript_include_tag :add_media
