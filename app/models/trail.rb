@@ -16,11 +16,11 @@ class Trail < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true, length: {minimum: 10}
 
-  def next_pin(pin)
-    if pins.last.stepnumber == pin.stepnumber + 1
+  def next_pin(pin) #pass in user's current pin
+    if pins.last.stepnumber == pin.stepnumber
       redirect_to #win_path
     else
-      current_user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1))
+      current_user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1).id)
     end
   end
 end
