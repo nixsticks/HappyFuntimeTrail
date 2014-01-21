@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120185004) do
+ActiveRecord::Schema.define(version: 20140121161843) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -22,26 +22,57 @@ ActiveRecord::Schema.define(version: 20140120185004) do
     t.integer "pin_id"
   end
 
+  create_table "audios", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contents", force: true do |t|
     t.text    "text"
     t.integer "user_id"
     t.integer "pin_id"
   end
 
+  create_table "images", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pins", force: true do |t|
-    t.integer "stepnumber"
-    t.string  "address"
-    t.integer "trail_id"
-    t.decimal "latitude"
-    t.decimal "longitude"
-    t.string  "text"
-    t.string  "video"
-    t.string  "audio"
-    t.string  "photo"
+    t.integer  "stepnumber"
+    t.string   "address"
+    t.integer  "trail_id"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.string   "text"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "tags", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "texts", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "pin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,5 +108,16 @@ ActiveRecord::Schema.define(version: 20140120185004) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "videos", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

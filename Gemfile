@@ -8,6 +8,7 @@ gem 'debugger'
 gem 'nested_form'
 gem 'jquery-ui-rails'
 gem 'geocoder'
+gem 'paperclip'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
