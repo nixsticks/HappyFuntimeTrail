@@ -1,17 +1,19 @@
+var newMarker;
+var currentMarker;
+var address;
+var geocoder = new google.maps.Geocoder();
+var markers = [];
+var permanentMarkers = [];
+var infowindow = new google.maps.InfoWindow();
+var map;
+
 function initialize() {
-  var geocoder = new google.maps.Geocoder();
-  var infowindow = new google.maps.InfoWindow();
-  var markers = [];
-  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
     mapTypeId: google.maps.MapTypeId.HYBRID,
     disableDoubleClickZoom: true,
     center: new google.maps.LatLng(40.7484, -73.9857),
     zoom: 15
   });
-  var newMarker;
-  var currentMarker;
-  var address;
-  var permanentMarkers = [];
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -98,64 +100,64 @@ function initialize() {
       });
     });
   });
-
-  function clickMarker(marker) {
-    google.maps.event.addListener(marker,'click',function(e) {
-      currentMarker = marker;
-      geocoder.geocode({latLng: this.getPosition()}, function(results) {
-        if (results[0]) {
-          address = results[0].formatted_address;
-          infowindow.setContent(
-            '<p>' + address + '</p>' +
-            '<button id="setPin">Set Pin</button>'
-            );
-          infowindow.open(map, marker);
-        }
-        else {
-          alert("Sorry, we couldn't determine the address of this location.")
-        }
-      });
-    });
-  };
-
-  $(document).on("click", "#setPin", function(event){
-    currentMarker.setMap(null);
-    var permanentMarker = new google.maps.Marker({
-      position: currentMarker.getPosition(),
-      map: map,
-      icon: '<%= asset_path "star-3.png" %>',
-      title: address
-    });
-    permanentMarkers.push(permanentMarker);
-    fillInputs('.address', address, permanentMarker);
-    fillInputs('.lat', currentMarker.getPosition().lat(), permanentMarker);
-    fillInputs('.long', currentMarker.getPosition().lng(), permanentMarker);
-    currentMarker = null;
-
-    google.maps.event.addListener(permanentMarker,'click',function(e) {
-        infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
-        infowindow.open(map, permanentMarker);
-    });
-
-    function fillInputs(classname, content, marker) {
-      $(classname).each(function() {
-        if (this.value == '') {
-          $(this).val(content);
-          // add a class to the input so i can delete it along with the marker if you decide to remove the pin
-          $(this).addClass(String(permanentMarkers.indexOf(marker)));
-          return false;
-        }
-      });
-    }
-  });
-
-  $(document).on("click", "#removePin", function(event){
-    classname = $(this).attr("class")
-    $("." + classname).each(function() {
-      this.remove();
-    });
-    permanentMarkers[classname].setMap(null);
-  });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+$(document).on("click", "#setPin", function(event){
+  currentMarker.setMap(null);
+  var permanentMarker = new google.maps.Marker({
+    position: currentMarker.getPosition(),
+    map: map,
+    icon: '<%= asset_path "star-3.png" %>',
+    title: address
+  });
+  permanentMarkers.push(permanentMarker);
+  fillInputs('.address', address, permanentMarker);
+  fillInputs('.lat', currentMarker.getPosition().lat(), permanentMarker);
+  fillInputs('.long', currentMarker.getPosition().lng(), permanentMarker);
+  currentMarker = null;
+
+  google.maps.event.addListener(permanentMarker,'click',function(e) {
+    infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
+    infowindow.open(map, permanentMarker);
+  });
+});
+
+$(document).on("click", "#removePin", function(event){
+  classname = $(this).attr("class")
+  $("." + classname).each(function() {
+    this.remove();
+  });
+  permanentMarkers[classname].setMap(null);
+});
+
+function clickMarker(marker) {
+  google.maps.event.addListener(marker,'click',function(e) {
+    currentMarker = marker;
+    geocoder.geocode({latLng: this.getPosition()}, function(results) {
+      if (results[0]) {
+        address = results[0].formatted_address;
+        infowindow.setContent(
+          '<p>' + address + '</p>' +
+          '<button id="setPin">Set Pin</button>'
+          );
+        infowindow.open(map, marker);
+      }
+      else {
+        alert("Sorry, we couldn't determine the address of this location.")
+      }
+    });
+  });
+}
+
+function fillInputs(classname, content, marker) {
+  $(classname).each(function() {
+    if (this.value == '') {
+      $(this).val(content);
+      // add a class to the input so i can delete it along with the marker if you decide to remove the pin
+      $(this).addClass(String(permanentMarkers.indexOf(marker)));
+      return false;
+    }
+  });
+}

@@ -8,7 +8,7 @@ class PinsController < ApplicationController
   end
 
   def show
-    @pin = Pin.find(params[:id])
+    @pin = Pin.find_by_stepnumber(params[:id])
   end
 
   def index
@@ -20,7 +20,7 @@ class PinsController < ApplicationController
   def update
     @pin = Pin.find(params[:id])
     @pin.update_attributes(pin_params)
-    render nothing: true  #AJAX YAY
+    redirect_to trail_pin_path(@pin.trail, @pin.stepnumber)
   end
 
   def destroy

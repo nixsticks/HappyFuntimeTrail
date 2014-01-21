@@ -1,1 +1,18 @@
-%h1= @pin.address
+%h1 Pin #{@pin.stepnumber}
+%h3= @pin.address
+%p #{@pin.latitude}, #{@pin.longitude}
+
+- @pin.texts.each do |text|
+  .text
+    = text.content
+- @pin.images.each do |image|
+  .image
+    = image_tag image.attachment.url(:medium)
+- @pin.videos.each do |video|
+  .video
+    %video{width: "320", height: "240", controls: true}
+      %source{src: "#{video.attachment.url}"}
+- @pin.audios.each do |audio|
+  %audio{controls: true}
+    %source{src: "#{audio.attachment.url}"}
+    Your browser does not support this audio format.
