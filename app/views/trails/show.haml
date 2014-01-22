@@ -1,5 +1,3 @@
-= javascript_include_tag params[:controller]
-
 = content_tag :div, class: "pin-data", data: {pins: @trail.pins.order('stepnumber')} do |pin|
   - nil
 
@@ -11,3 +9,4 @@
 %button
   = link_to 'Start Trail', trail_start_path(@trail), method: :post
 
+= javascript_include_tag params[:controller]
