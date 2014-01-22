@@ -7,6 +7,10 @@ var infowindow = new google.maps.InfoWindow();
 var trailPath;
 var map;
 
+$(document).ready(function(){
+  initialize();
+});
+
 function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {mapTypeId: google.maps.MapTypeId.HYBRID});
 
@@ -64,7 +68,3 @@ function trail() {
 
   trailPath.setMap(map);
 }
-
-
-
-google.maps.event.addDomListener(window, 'load', initialize);

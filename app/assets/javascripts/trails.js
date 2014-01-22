@@ -1,6 +1,10 @@
 var pins = $('.pin-data').data('pins');
 var latlngs = [];
 
+$(document).ready(function(){
+  initialize();
+});
+
 function initialize() {
   var map = new google.maps.Map(document.getElementById('map-canvas'), {mapTypeId: google.maps.MapTypeId.HYBRID});
   var infowindow = new google.maps.InfoWindow();
@@ -43,5 +47,3 @@ function initialize() {
     });
   }
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
