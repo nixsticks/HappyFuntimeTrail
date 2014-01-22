@@ -66,6 +66,10 @@ class TrailsController < ApplicationController
     @pins = @trail.pins
   end
 
+  def win
+    @trail = Trail.find(params[:id])
+  end
+
   private 
 
     def trail_params

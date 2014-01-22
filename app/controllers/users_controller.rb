@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user = current_user
     @trail = current_user.current_trail
     @pin = @user.current_pin
-    if @user.correct_location?(params[:latitude], params[:longitude])
+    if @user.correct_location?(params[:latitude].round(4), params[:longitude].round(4)) #round to 4th decimal place so user can be within a radius of the correct location.
       @trail.next_pin(@pin)
       redirect_to trail_pin_path(@trail, @pin)
     else

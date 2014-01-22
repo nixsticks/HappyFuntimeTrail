@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121164915) do
+ActiveRecord::Schema.define(version: 20140122174323) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140121164915) do
     t.string   "remember_token"
     t.integer  "current_trail_id"
     t.integer  "current_pin_id"
+    t.boolean  "god",              default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
