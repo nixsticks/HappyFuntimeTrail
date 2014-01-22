@@ -9,6 +9,11 @@ class PinsController < ApplicationController
 
   def show
     @pin = Pin.find_by_stepnumber(params[:id])
+    if @pin.authorized?(current_user)
+      render 'show'
+    else
+      render 'unauthorized'
+    end
   end
 
   def index
