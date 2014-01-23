@@ -22,7 +22,6 @@ module HappyFuntimeTrail
 
     I18n.enforce_available_locales = true
 
-    config.assets.precompile += %w( *.js )
-    config.assets.precompile += %w( *.png )
+    config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
   end
 end
