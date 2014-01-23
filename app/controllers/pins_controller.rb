@@ -9,6 +9,7 @@ class PinsController < ApplicationController
 
   def show
     @pin = Pin.find_by_stepnumber(params[:id])
+    
   end
 
   def index

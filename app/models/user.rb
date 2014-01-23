@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
 
   def start(trail)
     update_attribute(:current_trail_id, trail.id) && update_attribute(:current_pin_id, trail.pins.first.id)
-    trail.followers << self # add current user starting trail to the trail's followers.
   end
 
   private 
