@@ -2,8 +2,12 @@ var lat = $("#latitude");
 var lng = $("#longitude");
 
 function getLocation() {
+  var options = {
+    enableHighAccuracy: true
+  }
+
   if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition);
+    navigator.geolocation.watchPosition(showPosition, null, options);
   }
   else {
     container.innerHTML="Geolocation is not supported by this browser.";
