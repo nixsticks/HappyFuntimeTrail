@@ -10,4 +10,7 @@
     = content_tag_for(:li, pin) do
       = pin.address
 
+%button
+  = link_to 'Bury Treasure', trail_add_media_path(@trail)
+
 = javascript_include_tag :order_pins

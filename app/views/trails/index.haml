@@ -1,1 +1,7 @@
 %h1 All Trails
+- @trails.each do |trail|
+  .trail
+    %p
+      = link_to trail.name, trail
+    %p
+      = trail.description
