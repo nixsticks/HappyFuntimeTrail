@@ -3,6 +3,7 @@ var lng = $("#longitude");
 
 function getLocation() {
   var options = {
+    maximumAge: 0,
     enableHighAccuracy: true
   }
 
