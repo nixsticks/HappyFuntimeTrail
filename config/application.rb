@@ -22,6 +22,7 @@ module HappyFuntimeTrail
 
     I18n.enforce_available_locales = true
 
-    config.assets.precompile += [ 'pin.js', 'pins.js', 'trails.js', 'users.js', 'order_pins.js']
+    config.assets.precompile += %w( *.js )
+    config.assets.precompile += %w( *.png )
   end
 end
