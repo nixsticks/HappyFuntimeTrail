@@ -1,5 +1,4 @@
-= content_tag :div, class: "pin-data", data: {pins: @trail.pins.order('stepnumber')} do |pin|
-  - nil
+= render 'shared/pins_div'
 
 %h1= @trail.name
 %p= @trail.description
