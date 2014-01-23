@@ -44,6 +44,7 @@ class TrailsController < ApplicationController
 
   def edit
     @trail = Trail.find(params[:id])
+    authorize('edit')
   end
 
   def update
@@ -70,14 +71,6 @@ class TrailsController < ApplicationController
 
   def win
     @trail = Trail.find(params[:id])
-  end
-
-  def authorize(page)
-    if @trail.editable?(current_user)
-      render page
-    else
-      render 'unauthorized'
-    end
   end
 
   private 

@@ -10,7 +10,7 @@ class MediasController < ApplicationController
   end
 
   def delete_video
-    Audio.find(params[:video][:id]).destroy
+    Video.find(params[:video][:id]).destroy
     redirect_to :back
   end
 
