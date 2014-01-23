@@ -22,5 +22,6 @@ module HappyFuntimeTrail
 
     I18n.enforce_available_locales = true
 
+    config.assets.precompile += [ 'pin.js', 'pins.js.erb', 'trails.js', 'users.js', 'order_pins.js.erb']
   end
 end
