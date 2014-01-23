@@ -16,8 +16,8 @@ function getLocation() {
 }
 
 function showPosition(position) {
-  lat.html(position.coords.latitude);
-  lng.html(position.coords.longitude);
+  lat.html(position.coords.latitude.toFixed(4));
+  lng.html(position.coords.longitude.toFixed(4));
   $("#latitudeinput").val(position.coords.latitude);
   $("#longitudeinput").val(position.coords.longitude);
 }
