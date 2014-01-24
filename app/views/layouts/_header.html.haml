@@ -1,6 +1,10 @@
-%header
-	= link_to "App Root", root_path, id: "logo"
-	%nav{class: "collapse navbar-collapse"}
+%nav{class: "navbar navbar-default", role:"navigation"}
+	%div{class: "navbar-header"}
+		%button{type: "button", class: "navbar-toggle", data:{toggle: "collapse", target:"#bs-navbar"}}
+			%span{class: "sr-only"}
+			%span Menu
+
+	%div{class: "collapse navbar-collapse", id: "bs-navbar"}
 		%ul{class: "nav navbar-nav"}
 			%li= link_to "Home", root_path 
 			

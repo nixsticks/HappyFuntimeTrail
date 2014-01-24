@@ -32,7 +32,7 @@ class TrailsController < ApplicationController
     else
       flash.now[:error] = 'Something went wrong!'
       render 'show'
-    endn
+    end
   end
 
   def index
