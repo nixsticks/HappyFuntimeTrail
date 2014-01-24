@@ -4,7 +4,7 @@ class TrailsController < ApplicationController
 
   def new
     @trail = Trail.new
-    3.times {@trail.pins.build}
+    5.times {@trail.pins.build}
   end
 
   def create
@@ -81,5 +81,4 @@ class TrailsController < ApplicationController
     def trail_params
       params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
     end
-
 end

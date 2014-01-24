@@ -1,7 +1,10 @@
-var lat = $("#latitude");
-var lng = $("#longitude");
+$(document).ready(function(){
+  getLocation();
+});
 
 function getLocation() {
+  var lat = $("#latitude");
+  var lng = $("#longitude");
   var options = {
     maximumAge: 0,
     enableHighAccuracy: true
@@ -11,7 +14,8 @@ function getLocation() {
     navigator.geolocation.watchPosition(showPosition, null, options);
   }
   else {
-    container.innerHTML="Geolocation is not supported by this browser.";
+    lat.innerHTML = "Geolocation is not supported by this browser.";
+    lng.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
@@ -21,7 +25,3 @@ function showPosition(position) {
   $("#latitudeinput").val(position.coords.latitude);
   $("#longitudeinput").val(position.coords.longitude);
 }
-
-$(document).ready(function(){
-  getLocation();
-});
