@@ -52,10 +52,10 @@ class UsersController < ApplicationController
     @trail = current_user.current_trail
     @pin = @user.current_pin
     if @user.correct_location?(params[:latitude], params[:longitude])
-      @trail.next_pin(@pin)
-      redirect_to trail_pin_path(@trail, @pin)
+      @trail.next_pin(@pin, @user)
+      redirect_to trail_pin_path(@trail, @pin.stepnumber)
     else
-      flash[:error] = "You're not there yet!"
+      flash.now[:error] = "You're not there yet!"
       render 'current'
     end
   end

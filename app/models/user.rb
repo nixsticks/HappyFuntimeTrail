@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
 
   def correct_location?(latitude, longitude)
-    self.current_pin.latitude.round(2) == latitude.to_f.round(2) && self.current_pin.longitude.round(2) == longitude.to_f.round(2)
+    self.current_pin.latitude.round(0) == latitude.to_f.round(0) && self.current_pin.longitude.round(0) == longitude.to_f.round(0)
     #round lat/lng to 4th decimal place so user can be within a radius of the correct location.
   end
 
