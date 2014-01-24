@@ -1,1 +1,8 @@
-%h1 
+%h1 Geotreasure
+
+.logo
+
+- if signed_in?
+  = render 'signed_in'
+- else
+  = render 'signed_out'
