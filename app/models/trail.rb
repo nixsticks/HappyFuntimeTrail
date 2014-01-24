@@ -26,15 +26,20 @@ class Trail < ActiveRecord::Base
     end
   end
 
-  def editable?(user)
-    user == self.creator || user.god?
-  end
-
   def increment_stepnumbers
     self.pins.each do |pin|
       all_pins = self.pins.sort_by {|pin| pin.id}
       index = all_pins.index(pin)
       pin.update_attribute(:stepnumber, (index + 1))
     end
+  end
+
+  def set_length
+    length = self.pins.size
+    self.update_attribute(:length, length)
+  end
+
+  def editable?(user)
+    (user == self.creator) || user.god?
   end
 end
