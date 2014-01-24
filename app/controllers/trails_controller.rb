@@ -10,6 +10,7 @@ class TrailsController < ApplicationController
     @trail = Trail.new(trail_params)
     if @trail.save
       flash[:success] = "Trail created!"
+      @trail.increment_stepnumbers
       redirect_to trail_order_pins_path(@trail)
     else
       flash.now[:error] = "Unable to save trail."
