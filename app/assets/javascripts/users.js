@@ -22,4 +22,6 @@ function showPosition(position) {
   $("#longitudeinput").val(position.coords.longitude);
 }
 
-getLocation();
+$(document).ready(function(){
+  getLocation();
+});
