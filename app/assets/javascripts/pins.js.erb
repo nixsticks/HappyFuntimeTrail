@@ -163,3 +163,33 @@ function fillInputs(classname, content, marker) {
     }
   });
 }
+
+function persistPins {
+  $(".lat").each(function() {
+    unless (this.value == '') {
+      setMarker()
+    }
+  })
+
+  $(".long").each(function() {
+    unless (this.value == '') {
+      
+    }
+  })
+
+  function setMarker(position) {
+    var permanentMarker = new google.maps.Marker({
+      position: position,
+      map: map,
+      icon: '<%= asset_path "star-3.png" %>',
+      title: address
+    });
+
+    permanentMarkers.push(permanentMarker);
+
+    google.maps.event.addListener(permanentMarker,'click',function(e) {
+      infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
+      infowindow.open(map, permanentMarker);
+    });
+  }
+}

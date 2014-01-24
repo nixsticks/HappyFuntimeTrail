@@ -4,6 +4,7 @@ class TrailsController < ApplicationController
 
   def new
     @trail = Trail.new
+    3.times {@trail.pins.build}
   end
 
   def create
@@ -31,7 +32,7 @@ class TrailsController < ApplicationController
     else
       flash.now[:error] = 'Something went wrong!'
       render 'show'
-    end
+    endn
   end
 
   def index
