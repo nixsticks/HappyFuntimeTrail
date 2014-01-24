@@ -1,10 +1,11 @@
+var lat = $("#latitude");
+var lng = $("#longitude");
+
 $(document).ready(function(){
   getLocation();
 });
 
 function getLocation() {
-  var lat = $("#latitude");
-  var lng = $("#longitude");
   var options = {
     maximumAge: 0,
     enableHighAccuracy: true
@@ -14,8 +15,8 @@ function getLocation() {
     navigator.geolocation.watchPosition(showPosition, null, options);
   }
   else {
-    lat.innerHTML = "Geolocation is not supported by this browser.";
-    lng.innerHTML = "Geolocation is not supported by this browser.";
+    lat.html("Geolocation is not supported by this browser.");
+    lng.html("Geolocation is not supported by this browser.");
   }
 }
 
