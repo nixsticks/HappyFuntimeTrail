@@ -16,6 +16,6 @@ class Pin < ActiveRecord::Base
   accepts_nested_attributes_for :videos, :reject_if => proc { |video| video[:attachment].blank? }, allow_destroy: true
 
   def authorized?(user)
-    (self.trail == user.current_trail && self.stepnumber < user.current_pin.stepnumber) || user.followed_trails.include?(self.trail) || user.god?
+    (self.trail == user.current_trail && self.stepnumber < user.current_pin.stepnumber) || user.followed_trails.include?(self.trail) || user.god? || user == self.trail.creator
   end
 end
