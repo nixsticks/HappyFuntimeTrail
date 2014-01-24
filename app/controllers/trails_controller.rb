@@ -32,7 +32,7 @@ class TrailsController < ApplicationController
     else
       flash.now[:error] = 'Something went wrong!'
       render 'show'
-    endn
+    end
   end
 
   def index
@@ -81,5 +81,4 @@ class TrailsController < ApplicationController
     def trail_params
       params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
     end
-
 end

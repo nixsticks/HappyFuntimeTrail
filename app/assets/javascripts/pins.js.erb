@@ -3,12 +3,14 @@ var currentMarker;
 var address;
 var geocoder = new google.maps.Geocoder();
 var markers = [];
+var pins = $('.pin-data').data('pins');
 var permanentMarkers = [];
 var infowindow = new google.maps.InfoWindow();
 var map;
 
 $(document).ready(function(){
   initialize();
+  persistPins();
 });
 
 function initialize() {
@@ -164,18 +166,19 @@ function fillInputs(classname, content, marker) {
   });
 }
 
-function persistPins {
-  $(".lat").each(function() {
-    unless (this.value == '') {
-      setMarker()
-    }
-  })
+function persistPins(){
+  for (var i = 0, pin; pin = pins[i]; i++) {
+    marker = setMarker(new google.maps.LatLng(pin.latitude, pin.longitude));
 
-  $(".long").each(function() {
-    unless (this.value == '') {
-      
-    }
-  })
+    $(".lat").each(function (){
+      if (this.value === pin.latitude) {
+        var group = $(this).parent();
+        group.children().each(function() {
+          $(this).addClass(String(permanentMarkers.indexOf(marker)));
+        })
+      }
+    });
+  }
 
   function setMarker(position) {
     var permanentMarker = new google.maps.Marker({
@@ -191,5 +194,7 @@ function persistPins {
       infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
       infowindow.open(map, permanentMarker);
     });
+
+    return permanentMarker;
   }
 }
