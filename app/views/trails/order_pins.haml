@@ -1,5 +1,5 @@
 .dynamic{data: {update: {url: "#{order_trail_pins_path(@trail)}"}}}
-  = render 'pin_div'
+  = render 'shared/pins_div'
 
 %h1 Set Pin Order
 
@@ -9,5 +9,8 @@
   - @pins.each do |pin|
     = content_tag_for(:li, pin) do
       = pin.address
+
+%button
+  = link_to 'Bury Treasure', trail_add_media_path(@trail)
 
 = javascript_include_tag :order_pins

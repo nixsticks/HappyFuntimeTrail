@@ -1,6 +1,13 @@
+= render 'shared/pin_div'
+
 -if flash[:error]
   %p{class: "error"}= flash[:error]
+%h1 Target
+
+#map-canvas
+
 %h1 Current Position
+
 %p
   Latitude:
   %span{id: "latitude"}
@@ -19,3 +26,4 @@
 %button Abandon Hope
 
 = javascript_include_tag params[:controller]
+= javascript_include_tag :pin

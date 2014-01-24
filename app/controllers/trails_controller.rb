@@ -39,6 +39,7 @@ class TrailsController < ApplicationController
   def order_pins
     @trail = Trail.find(params[:id])
     @pins = @trail.pins.order(:stepnumber)
+    authorize('order_pins')
   end
 
   def edit
@@ -64,10 +65,19 @@ class TrailsController < ApplicationController
   def add_media
     @trail = Trail.find(params[:id])
     @pins = @trail.pins
+    authorize('add_media')
   end
 
   def win
     @trail = Trail.find(params[:id])
+  end
+
+  def authorize(page)
+    if @trail.editable?(current_user)
+      render page
+    else
+      render 'unauthorized'
+    end
   end
 
   private 

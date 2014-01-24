@@ -24,4 +24,8 @@ class Trail < ActiveRecord::Base
       current_user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1).id)
     end
   end
+
+  def editable?(user)
+    user == self.creator || user.god?
+  end
 end

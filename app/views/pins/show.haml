@@ -1,6 +1,11 @@
+= content_tag :div, class: "pin-data", data: {pin: @pin} do |pin|
+  - nil
+
 %h1 Pin #{@pin.stepnumber}
 %h3= @pin.address
 %p #{@pin.latitude}, #{@pin.longitude}
+
+#map-canvas
 
 - @pin.texts.each do |text|
   .text
@@ -16,3 +21,5 @@
   %audio{controls: true}
     %source{src: "#{audio.attachment.url}"}
     Your browser does not support this audio format.
+
+= javascript_include_tag :pin

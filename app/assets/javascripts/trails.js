@@ -16,6 +16,7 @@ function initialize() {
     var marker = new google.maps.Marker({
       position: latlng,
       map: map,
+      icon: "/assets/number_" + pin.stepnumber + ".png",
       title: 'Treasure Hunt!'
     });
 
