@@ -1,4 +1,4 @@
-var pins = $('.pin-data').data('pins');
+var pins;
 var latlngs = [];
 var markers = [];
 var infowindow = new google.maps.InfoWindow();
@@ -32,6 +32,7 @@ function clickMarker(marker, pin) {
 }
 
 function setPins() {
+  pins = $('.pin-data').data('pins');
   latlngs = [];
   for (var i = 0, pin; pin = pins[i]; i++) {
     var latlng = new google.maps.LatLng(pin.latitude, pin.longitude);
@@ -57,7 +58,7 @@ function clearPins() {
 
 function setTrail() {
   resetTrail(); 
-  
+
   trailPath = new google.maps.Polyline({
     path: latlngs,
     geodesic: true,
@@ -84,7 +85,7 @@ $('#pins').sortable({
         clearPins();
         markers = [];
         setPins();
-        trail();
+        setTrail();
       });
     }
   }
