@@ -1,6 +1,9 @@
 = content_tag :div, class: "pin-data", data: {pin: @pin} do |pin|
   - nil
 
+-if @pin == @trail.pins.last
+  =render 'win_pin'
+
 %h1 Pin #{@pin.stepnumber}
 %h3= @pin.address
 %p #{@pin.latitude}, #{@pin.longitude}
