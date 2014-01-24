@@ -10,9 +10,10 @@ class TrailsController < ApplicationController
     @trail = Trail.new(trail_params)
     if @trail.save
       flash[:success] = "Trail created!"
+      @trail.increment_stepnumbers
       redirect_to trail_order_pins_path(@trail)
     else
-      flash.now[:danger] = "Unable to save trail."
+      flash.now[:error] = "Unable to save trail."
       render 'new'
     end
   end
@@ -44,6 +45,7 @@ class TrailsController < ApplicationController
 
   def edit
     @trail = Trail.find(params[:id])
+    authorize('edit')
   end
 
   def update
@@ -52,7 +54,7 @@ class TrailsController < ApplicationController
       flash[:success] = "Trail updated!"
       redirect_to @trail
     else
-      flash.now[:danger] = "Unable to save trail."
+      flash.now[:error] = "Unable to save trail."
       render 'edit'
     end
   end
@@ -70,14 +72,6 @@ class TrailsController < ApplicationController
 
   def win
     @trail = Trail.find(params[:id])
-  end
-
-  def authorize(page)
-    if @trail.editable?(current_user)
-      render page
-    else
-      render 'unauthorized'
-    end
   end
 
   private 

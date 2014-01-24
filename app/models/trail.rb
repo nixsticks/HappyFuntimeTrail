@@ -16,16 +16,25 @@ class Trail < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true, length: {minimum: 10}
 
-  def next_pin(pin) #pass in user's current pin
+  def next_pin(pin, user) #pass in user's current pin
     if pins.last.stepnumber == pin.stepnumber
-      self.followers << current_user # add current user starting trail to the trail's followers.
-      redirect_to trail_win_path
+      self.followers << user unless self.followers.include?(user)
+      user.update_attribute(:current_trail_id, nil)
+      user.update_attribute(:current_pin_id, nil)
     else
-      current_user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1).id)
+      user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1).id)
     end
   end
 
   def editable?(user)
     user == self.creator || user.god?
+  end
+
+  def increment_stepnumbers
+    self.pins.each do |pin|
+      all_pins = self.pins.sort_by {|pin| pin.id}
+      index = all_pins.index(pin)
+      pin.update_attribute(:stepnumber, (index + 1))
+    end
   end
 end

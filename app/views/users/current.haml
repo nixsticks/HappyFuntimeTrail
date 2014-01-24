@@ -1,7 +1,5 @@
 = render 'shared/pin_div'
 
--if flash[:error]
-  %p{class: "error"}= flash[:error]
 %h1 Target
 
 #map-canvas
@@ -15,9 +13,9 @@
   Longitude:
   %span{id: "longitude"}
 %p
-  Target latitude: #{@pin.latitude}
+  Target latitude: #{@pin.latitude.round(4)}
 %p
-  Target longitude: #{@pin.longitude}
+  Target longitude: #{@pin.longitude.round(4)}
 
 = form_tag checkin_path, method: :post do
   %input{type: "hidden", id: "latitudeinput", name: "latitude"}

@@ -26,6 +26,12 @@ HappyFuntimeTrail::Application.routes.draw do
   get '/trails/:id/add_media' => 'trails#add_media', as: :trail_add_media
 
   get '/trails/:id/win' => 'trails#win', as: :trail_win
+
+  delete '/delete_text' => 'medias#delete_text'
+  delete '/delete_audio' => 'medias#delete_audio'
+  delete '/delete_video' => 'medias#delete_video'
+  delete '/delete_image' => 'medias#delete_image'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

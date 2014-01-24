@@ -10,16 +10,33 @@
 - @pin.texts.each do |text|
   .text
     = text.content
+    = form_for :text, url: '/delete_text', method: :post do |f|
+      = f.hidden_field :destroy, name: '_method', value: 'delete'
+      = f.hidden_field :id, value: text.id
+      = f.submit 'Delete text'
 - @pin.images.each do |image|
   .image
     = image_tag image.attachment.url(:medium)
+    = form_for :image, url: '/delete_image', method: :post do |f|
+      = f.hidden_field :destroy, name: '_method', value: 'delete'
+      = f.hidden_field :id, value: image.id
+      = f.submit 'Delete image'
 - @pin.videos.each do |video|
   .video
     %video{width: "320", height: "240", controls: true}
       %source{src: "#{video.attachment.url}"}
+    = form_for :video, url: '/delete_video', method: :post do |f|
+      = f.hidden_field :destroy, name: '_method', value: 'delete'
+      = f.hidden_field :id, value: video.id
+      = f.submit 'Delete video'
 - @pin.audios.each do |audio|
-  %audio{controls: true}
-    %source{src: "#{audio.attachment.url}"}
-    Your browser does not support this audio format.
+  .audio
+    %audio{controls: true}
+      %source{src: "#{audio.attachment.url}"}
+      Your browser does not support this audio format.
+    = form_for :audio, url: '/delete_audio', method: :post do |f|
+      = f.hidden_field :destroy, name: '_method', value: 'delete'
+      = f.hidden_field :id, value: audio.id
+      = f.submit 'Delete audio'
 
 = javascript_include_tag :pin
