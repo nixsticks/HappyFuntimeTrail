@@ -13,3 +13,7 @@
 				%li= link_to "Sign up", signup_path
 			-if on_trail?
 				%li= link_to "Check in", current_path
+- if flash[:success]
+	%p{class: "success"}= flash[:success]
+- elsif flash[:error]
+	%p{class: "error"}= flash[:error]
