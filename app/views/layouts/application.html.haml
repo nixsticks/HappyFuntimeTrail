@@ -10,3 +10,5 @@
     .container
       =render 'layouts/header'
       =yield
+      -if on_trail?
+        =render 'layouts/check_in'

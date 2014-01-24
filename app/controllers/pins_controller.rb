@@ -8,8 +8,8 @@ class PinsController < ApplicationController
   end
 
   def show
-    trail = Trail.find(params[:trail_id])
-    @pin = trail.pins.find_by_stepnumber(params[:id])
+    @trail = Trail.find(params[:trail_id])
+    @pin = @trail.pins.find_by_stepnumber(params[:id])
     if @pin.authorized?(current_user)
       render 'show'
     else
