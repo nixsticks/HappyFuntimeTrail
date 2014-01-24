@@ -12,6 +12,9 @@
 
  */
 
+.img_banner {
+  positon: absolute;
+  width: 100%; }
 #map-canvas {
   height: 400px;
   width: 700px; }
