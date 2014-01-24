@@ -1,6 +1,4 @@
-// add_media.js
-
-var pins;
+var pins = $('.pin-data').data('pins');
 var latlngs = [];
 var markers = [];
 var infowindow = new google.maps.InfoWindow();
@@ -16,26 +14,17 @@ function initialize() {
 
   setPins();
 
+  //set up map with bounds, center, and polyline
   var latlngBounds = new google.maps.LatLngBounds();
   latlngs.forEach(function (n) {
     latlngBounds.extend(n);
   });
   map.setCenter(latlngBounds.getCenter());
   map.fitBounds(latlngBounds); 
-
-  trail();
-}
-
-function clickMarker(marker, pin) {
-  google.maps.event.addListener(marker,'click',function(e) {
-    infowindow.setContent('<p>' + pin.address + '</p>');
-    infowindow.open(map, marker);
-  });
+  trailPath().setMap(map);
 }
 
 function setPins() {
-  latlngs = [];
-  pins = $('.pin-data').data('pins');
   for (var i = 0, pin; pin = pins[i]; i++) {
     var latlng = new google.maps.LatLng(pin.latitude, pin.longitude);
     latlngs.push(latlng);
@@ -52,13 +41,15 @@ function setPins() {
   }
 }
 
-function trail() {
-  if (trailPath) {
-    trailPath.setMap(null);
-    trailPath = null;
-  }
+function clickMarker(marker, pin) {
+  google.maps.event.addListener(marker,'click',function(e) {
+    infowindow.setContent('<p>' + pin.address + '</p>');
+    infowindow.open(map, marker);
+  });
+}
 
-  trailPath = new google.maps.Polyline({
+function trailPath() {
+  path = new google.maps.Polyline({
     path: latlngs,
     geodesic: true,
     strokeColor: '#FF0000',
@@ -66,5 +57,5 @@ function trail() {
     strokeWeight: 2
   });
 
-  trailPath.setMap(map);
+  return path;
 }

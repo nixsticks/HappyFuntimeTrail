@@ -4,7 +4,7 @@ class TrailsController < ApplicationController
 
   def new
     @trail = Trail.new
-    3.times {@trail.pins.build}
+    5.times {@trail.pins.build}
   end
 
   def create
