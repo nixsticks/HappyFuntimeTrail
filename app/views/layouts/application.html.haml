@@ -7,5 +7,6 @@
     %script{src: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places,geometry"}
     = csrf_meta_tags
   %body
-    =render 'layouts/header'
-    =yield
+    .container
+      =render 'layouts/header'
+      =yield
