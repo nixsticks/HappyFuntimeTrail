@@ -4,6 +4,8 @@ HappyFuntimeTrail::Application.routes.draw do
   get '/help' => 'pages#help', as: :help
 
   get '/current' => 'users#current', as: :current
+  get '/abandon' => 'users#abandon', as: :abandon
+
   resources :users
   get '/signup' => 'users#new'
   post '/checkin' => 'users#checkin', as: :checkin

@@ -1,8 +1,11 @@
 = render 'shared/persist_pins_div'
 
-#map-canvas
+%h1 New Map
 
-%input{id: "pin", class: "controls", type: "text", placeholder: "Search"}
-= render 'form'
+.cf
+  #map-canvas.float
+  %input{id: "pin", class: "controls", type: "text", placeholder: "Search"}
+
+  = render 'form'
 
 = javascript_include_tag :pins

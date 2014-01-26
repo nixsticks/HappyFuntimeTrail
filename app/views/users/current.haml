@@ -20,8 +20,9 @@
 = form_tag checkin_path, method: :post do
   %input{type: "hidden", id: "latitudeinput", name: "latitude"}
   %input{type: "hidden", id: "longitudeinput", name: "longitude"}
-  %input{type: "submit", value: "Check in"} 
-%button Abandon Hope
+  %input{type: "submit", value: "Check in", class: "btn btn-default"}
+
+%a{href: "#{abandon_path}", class: "btn btn-default"} Abandon Hope
 
 = javascript_include_tag params[:controller]
 = javascript_include_tag :pin
