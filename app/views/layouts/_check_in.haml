@@ -1,4 +1,3 @@
-
 -unless request.fullpath == '/current'
-  %button{class: "checkin"} Check in to your current trail
-    
+  %footer
+    %a{class: "btn btn-default btn-lg checkin", href: "#{current_path}"} Check in
