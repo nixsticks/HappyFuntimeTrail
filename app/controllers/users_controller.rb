@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
   def abandon
     current_user.stop_trail
-    redirect_to current_user
+    redirect_to root_path
   end
 
   private

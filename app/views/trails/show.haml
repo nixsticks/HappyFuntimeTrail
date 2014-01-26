@@ -5,7 +5,7 @@
 
 #map-canvas
 
-%button
-  = link_to 'Start Trail', trail_start_path(@trail), method: :post
+.button
+  = link_to 'Start Trail', trail_start_path(@trail), method: :post, class: "btn btn-default"
 
 = javascript_include_tag :trails

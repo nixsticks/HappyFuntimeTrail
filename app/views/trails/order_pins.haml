@@ -3,14 +3,15 @@
 
 %h1 Set Pin Order
 
-#map-canvas
+.row
+  #map-canvas.col-md-8
 
-%ol{id: "pins", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
-  - @pins.each do |pin|
-    = content_tag_for(:li, pin) do
-      = pin.address
-
-%button
-  = link_to 'Bury Treasure', trail_add_media_path(@trail)
+  .col-md-4
+    %ol{id: "pins", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
+      - @pins.each do |pin|
+        = content_tag_for(:li, pin) do
+          = pin.address
+    .button
+      = link_to 'Bury Treasure', trail_add_media_path(@trail), class: "btn btn-default"
 
 = javascript_include_tag :order_pins

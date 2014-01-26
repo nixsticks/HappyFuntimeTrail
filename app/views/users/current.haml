@@ -1,28 +1,32 @@
 = render 'shared/pin_div'
 
-%h1 Target
+.row
+  .col-md-8
+    %h1 Target
+  .col-md-4
+    %h1 Current Position
 
-#map-canvas
+.row
+  .col-md-8
+    #map-canvas
+  .col-md-4
+    %p
+      Latitude:
+      %span{id: "latitude"}
+    %p
+      Longitude:
+      %span{id: "longitude"}
+    %p
+      Target latitude: #{@pin.latitude.round(4)}
+    %p
+      Target longitude: #{@pin.longitude.round(4)}
 
-%h1 Current Position
+    = form_tag checkin_path, method: :post do
+      %input{type: "hidden", id: "latitudeinput", name: "latitude"}
+      %input{type: "hidden", id: "longitudeinput", name: "longitude"}
+      %input{type: "submit", value: "Check in", class: "btn btn-default"}
 
-%p
-  Latitude:
-  %span{id: "latitude"}
-%p
-  Longitude:
-  %span{id: "longitude"}
-%p
-  Target latitude: #{@pin.latitude.round(4)}
-%p
-  Target longitude: #{@pin.longitude.round(4)}
-
-= form_tag checkin_path, method: :post do
-  %input{type: "hidden", id: "latitudeinput", name: "latitude"}
-  %input{type: "hidden", id: "longitudeinput", name: "longitude"}
-  %input{type: "submit", value: "Check in", class: "btn btn-default"}
-
-%a{href: "#{abandon_path}", class: "btn btn-default"} Abandon Hope
+    %a{href: "#{abandon_path}", class: "btn btn-default", data: {confirm: "Are you sure you want to abandon this path?"}} Abandon Hope
 
 = javascript_include_tag params[:controller]
 = javascript_include_tag :pin
