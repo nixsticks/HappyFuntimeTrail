@@ -1,9 +1,11 @@
 = render 'shared/pins_div'
 
-%h1= @trail.name
-%p= @trail.description
+.center.page-header
+  %h1= @trail.name
+.center
+  %p= @trail.description
 
-#map-canvas
+#map-canvas.small
 
 .button.center
   = link_to 'Start Trail', trail_start_path(@trail), method: :post, class: "btn btn-default"

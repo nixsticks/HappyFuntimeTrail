@@ -5,3 +5,15 @@
 #map-canvas {
   height: 400px;
 }
+
+#map-canvas.small {
+  height: 300px;
+  width: 500px;
+  margin: 0px auto;
+}
+
+.controls {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+}
