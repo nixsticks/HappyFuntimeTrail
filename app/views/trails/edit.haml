@@ -2,18 +2,22 @@
 
 %h1 Edit Trail
 
-#map-canvas
+.row
+  #map-canvas.col-md-8
 
-= form_for @trail do |f|
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  = f.submit
+  .col-md-4
+    = form_for @trail do |f|
+      .field
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+      .field
+        = f.label :description
+        = f.text_area :description, class: "form-control"
+      .button
+        = f.submit class: "btn btn-default"
+      .button
+        = link_to 'Order pins', trail_order_pins_path(@trail), class: "btn btn-default"
+      .button
+        = link_to 'Add media', trail_add_media_path(@trail), class: "btn btn-default"
 
 = javascript_include_tag :trails
-
-= link_to 'Order pins', trail_order_pins_path(@trail)
-= link_to 'Add media', trail_add_media_path(@trail)

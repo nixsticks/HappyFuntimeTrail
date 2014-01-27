@@ -1,9 +1,11 @@
 HappyFuntimeTrail::Application.routes.draw do
   root 'pages#index'
-  get '/about' => 'pages#about'
-  get '/help' => 'pages#help'
+  get '/about' => 'pages#about', as: :about
+  get '/help' => 'pages#help', as: :help
 
   get '/current' => 'users#current', as: :current
+  get '/abandon' => 'users#abandon', as: :abandon
+
   resources :users
   get '/signup' => 'users#new'
   post '/checkin' => 'users#checkin', as: :checkin

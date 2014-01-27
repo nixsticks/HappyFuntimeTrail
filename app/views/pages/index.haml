@@ -1,7 +1,8 @@
-%h1 Geotreasure
+.center.page-header
+  %h1 Geotreasure
 
-=image_tag("old_map2.jpg", class: "img_banner")
-
+.banner
+  = image_tag("compass.jpg")
 
 - if signed_in?
   = render 'signed_in'

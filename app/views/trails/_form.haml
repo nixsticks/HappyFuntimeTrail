@@ -1,19 +1,20 @@
-= nested_form_for @trail do |f|
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .form_group
-    = f.hidden_field :creator_id, value: current_user.id, class: 'form-control'
-  .form-group
-    #pins
-      = f.fields_for :pins do |pin|
-        .pin-group
-          = pin.text_field :latitude, class: "lat"
-          = pin.text_field :longitude, class: "long"
-          = pin.text_field :address, class: "address"
-      = f.link_to_add "Add pin", :pins
-  .buttons
-    = f.submit onclick: "return confirm('Once you set your pins, you will not be able to remove or add more. Are you sure?')"
+.col-md-4
+  = nested_form_for @trail, role: "form" do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :description
+      = f.text_area :description, class: "form-control"
+    .form-group
+      = f.hidden_field :creator_id, value: current_user.id, class: 'form-control'
+    .form-group
+      #pins
+        = f.fields_for :pins do |pin|
+          .pin-group
+            = pin.hidden_field :latitude, class: "lat"
+            = pin.hidden_field :longitude, class: "long"
+            = pin.text_field :address, class: "address form-control"
+        = f.link_to_add "Add pin", :pins
+    .buttons
+      = f.submit onclick: "return confirm('Once you set your pins, you will not be able to remove or add more. Are you sure?')", class: "btn btn-default"

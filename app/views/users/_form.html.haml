@@ -31,6 +31,6 @@
 			= f.password_field :password_confirmation
 
 		-if @user.id
-			= f.submit "Create my account"
+			= f.submit "Create my account", class: "btn btn-default"
 		-else
-			= f.submit "Update my profile"
+			= f.submit "Update my profile", class: "btn btn-default"

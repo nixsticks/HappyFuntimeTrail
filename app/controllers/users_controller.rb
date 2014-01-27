@@ -60,6 +60,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def abandon
+    current_user.stop_trail
+    redirect_to root_path
+  end
+
   private
 
     def user_params

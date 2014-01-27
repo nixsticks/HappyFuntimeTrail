@@ -19,8 +19,7 @@ class Trail < ActiveRecord::Base
   def next_pin(pin, user) #pass in user's current pin
     if pins.last.stepnumber == pin.stepnumber
       self.followers << user unless self.followers.include?(user)
-      user.update_attribute(:current_trail_id, nil)
-      user.update_attribute(:current_pin_id, nil)
+      user.stop_trail
     else
       user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1).id)
     end

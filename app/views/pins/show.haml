@@ -4,42 +4,46 @@
 -if @pin == @trail.pins.last && current_user.followed_trails.include?(@trail)
   =render 'win_pin'
 
-%h1 Pin #{@pin.stepnumber}
+.center.page-header
+  %h1 Pin #{@pin.stepnumber}
+
 %h3= @pin.address
-%p #{@pin.latitude}, #{@pin.longitude}
+%p #{@pin.latitude.round(4)}, #{@pin.longitude.round(4)}
 
 #map-canvas
 
-- @pin.texts.each do |text|
-  .text
-    = text.content
-    = form_for :text, url: '/delete_text', method: :post do |f|
-      = f.hidden_field :destroy, name: '_method', value: 'delete'
-      = f.hidden_field :id, value: text.id
-      = f.submit 'Delete text'
-- @pin.images.each do |image|
-  .image
-    = image_tag image.attachment.url(:medium)
-    = form_for :image, url: '/delete_image', method: :post do |f|
-      = f.hidden_field :destroy, name: '_method', value: 'delete'
-      = f.hidden_field :id, value: image.id
-      = f.submit 'Delete image'
-- @pin.videos.each do |video|
-  .video
-    %video{width: "320", height: "240", controls: true}
-      %source{src: "#{video.attachment.url}"}
-    = form_for :video, url: '/delete_video', method: :post do |f|
-      = f.hidden_field :destroy, name: '_method', value: 'delete'
-      = f.hidden_field :id, value: video.id
-      = f.submit 'Delete video'
-- @pin.audios.each do |audio|
-  .audio
-    %audio{controls: true}
-      %source{src: "#{audio.attachment.url}"}
-      Your browser does not support this audio format.
-    = form_for :audio, url: '/delete_audio', method: :post do |f|
-      = f.hidden_field :destroy, name: '_method', value: 'delete'
-      = f.hidden_field :id, value: audio.id
-      = f.submit 'Delete audio'
+.center
+  .media
+    - @pin.images.each do |image|
+      .image
+        = image_tag image.attachment.url(:medium), class: "img-thumbnail"
+        = form_for :image, url: '/delete_image', method: :post do |f|
+          = f.hidden_field :destroy, name: '_method', value: 'delete'
+          = f.hidden_field :id, value: image.id
+          = f.submit 'Delete image', class: "btn btn-default"
+    - @pin.videos.each do |video|
+      .video
+        %video{width: "320", height: "240", controls: true}
+          %source{src: "#{video.attachment.url}"}
+        = form_for :video, url: '/delete_video', method: :post do |f|
+          = f.hidden_field :destroy, name: '_method', value: 'delete'
+          = f.hidden_field :id, value: video.id
+          = f.submit 'Delete video', class: "btn btn-default"
+    - @pin.audios.each do |audio|
+      .audio
+        %audio{controls: true}
+          %source{src: "#{audio.attachment.url}"}
+          Your browser does not support this audio format.
+        = form_for :audio, url: '/delete_audio', method: :post do |f|
+          = f.hidden_field :destroy, name: '_method', value: 'delete'
+          = f.hidden_field :id, value: audio.id
+          = f.submit 'Delete audio', class: "btn btn-default"
+    - @pin.texts.each do |text|
+      .text
+        = text.content
+        = form_for :text, url: '/delete_text', method: :post do |f|
+          = f.hidden_field :destroy, name: '_method', value: 'delete'
+          = f.hidden_field :id, value: text.id
+          = f.submit 'Delete text', class: "btn btn-default"
 
 = javascript_include_tag :pin

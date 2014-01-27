@@ -47,6 +47,11 @@ class User < ActiveRecord::Base
     update_attribute(:current_trail_id, trail.id) && update_attribute(:current_pin_id, trail.pins.first.id)
   end
 
+  def stop_trail
+    update_attribute(:current_trail_id, nil)
+    update_attribute(:current_pin_id, nil)
+  end
+
   private 
 
     def create_remember_token

@@ -2,8 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  padding: 30px 0px;
+}
 
-.img_banner {
-  positon: absolute;
-  width: 100%;
+.banner {
+  text-align: center;
+  img {
+    height: 300px;
+  }
+}
+
+.center, footer {
+  text-align: center;
+}
+
+footer {
+  padding: 30px;
+}
+
+.container {
+  width: 70%
+}
+
+.button {
+  padding: 20px 0px;
 }
