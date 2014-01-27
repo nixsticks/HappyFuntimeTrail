@@ -1,17 +1,17 @@
 - provide(:title, "Sign in")
 
-- if flash[:error]
-	%p{class: 'error'}= flash[:error]
-	
+.center.page-header
+  %h1 Sign In
+
 .form
-	=form_for(:session, url: sessions_path) do |f|
+  =form_for(:session, url: sessions_path) do |f|
+    .form-group
+      =f.label :username
+      =f.text_field :username
+    .form-group
+      =f.label :password
+      =f.password_field :password
+    .form-group
+      =f.submit "Sign in", class: "btn btn-default"
 
-		=f.label :username
-		=f.text_field :username
-
-		=f.label :password
-		=f.password_field :password
-
-		=f.submit "Sign in"
-
-		%p New user? #{link_to "Sign up now!", signup_path}
+%p New user? #{link_to "Sign up now!", signup_path}

@@ -1,21 +1,18 @@
 %h3 My trails:
 - if @user.created_trails
-  %ol
   - @user.created_trails.each do |trail|
-    %li
-      %p= link_to trail.name, trail
-      %ul
-        %li Description: #{trail.description}
-        %li Popularity: #{trail.popularity}
-        %li Length of Trail: #{trail.length}
+    %h5= link_to trail.name, trail
+    %ul
+      %li Description: #{trail.description}
+      %li Popularity: #{trail.popularity}
+      %li Length of Trail: #{trail.length}
 - else
   %p This user hasn't created any trails yet!
 
 - unless @user.followed_trails.empty?
   %h3 Trails I've completed
-  %ol
   - @user.followed_trails.each do |trail|
-    %p= link_to trail.name, trail
+    %h5= link_to trail.name, trail
     %p= trail.description
 
 %button{class: 'btn btn-default'}
