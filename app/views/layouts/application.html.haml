@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     .container
-      = render 'layouts/header'
+      = render 'shared/header'
       = yield
       -if on_trail?
-        = render 'layouts/check_in'
+        = render 'shared/check_in'
