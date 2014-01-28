@@ -43,8 +43,13 @@ class UsersController < ApplicationController
   end
 
   def current
-    @user = current_user
-    @pin = @user.current_pin
+    if current_user
+      @user = current_user
+      @pin = @user.current_pin
+      render action: 'current'
+    else
+      render 'shared/not_logged_in'
+    end
   end
 
   def checkin

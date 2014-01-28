@@ -38,6 +38,10 @@ class Trail < ActiveRecord::Base
     self.update_attribute(:length, length)
   end
 
+  def get_length
+    return self.length
+  end
+
   def editable?(user)
     (user == self.creator) || user.god?
   end
