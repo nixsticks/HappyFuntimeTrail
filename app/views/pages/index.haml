@@ -1,9 +1,14 @@
 .center.page-header
-  %h1 Geotreasure
 
 .hero
-  %h1 Make trails. Add treasure. Share with friends.
-  = image_tag("old_map2.jpg")
+  .row
+    %h1{class: "col-md-9"} Make trails. Add treasure. Share with friends.
+
+.section
+
+  
+.section
+
 
 - if signed_in?
   = render 'signed_in'

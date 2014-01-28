@@ -1,7 +1,7 @@
 %ul{class: "right"}
   -if signed_in?
     %li= link_to current_user.username, current_user
-    %li= link_to "Sign out", signout_path
+    %li= link_to "Sign out", signout_path, method: :delete
   -else 
     %li= link_to "Sign in", signin_path
     %li= link_to "Sign up", signup_path
