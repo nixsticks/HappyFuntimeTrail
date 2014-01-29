@@ -3,8 +3,12 @@ class TrailsController < ApplicationController
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @trail = Trail.new
-    5.times {@trail.pins.build}
+    if current_user
+      @trail = Trail.new
+      5.times {@trail.pins.build}
+    else
+      render "shared/not_logged_in"
+    end
   end
 
   def create
