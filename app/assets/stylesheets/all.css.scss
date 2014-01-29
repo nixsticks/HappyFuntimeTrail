@@ -22,14 +22,21 @@
 // all
 
 body {
-  padding: 30px 0px;
+  padding: 50px 0px;
+  height: 100%;
+  width: 100%;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 
 // header stuff
 
 .header {
-  z-index: 1;
   top: 0px;
   position: fixed;
   background-color: #CDB380;
@@ -132,7 +139,6 @@ footer {
   }
 }
 
-
 // flash
 
 .success {
@@ -150,16 +156,55 @@ footer {
   height: 400px;
 }
 
+#map-canvas.large {
+  height: 100%;
+  width: 100%;
+}
+
 #map-canvas.small {
   height: 300px;
   width: 500px;
   margin: 0px auto;
 }
 
+.map-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
 .controls {
   width: 200px;
   height: 30px;
-  border-radius: 5px;
+  border-radius: 5px;;
+}
+
+.left-panel {
+  background-color: #033649;
+  color: white;
+  height: 100%;
+}
+
+.left-container {
+  padding-left:15px;
+}
+
+.center-panel {
+  height: 100%;
+}
+
+.right-panel {
+  // position: absolute;
+  // right: 0;
+  // top: 0;
+  height: 100%;
+  background-color: #033649;
+  color: white;
+}
+
+.right-container {
+  padding: 15px 15px 0 0;
 }
 
 
@@ -182,6 +227,11 @@ a {
   text-decoration: none;
 }
 
+a.add_nested_fields {
+  color: white;
+  font-size: 1em;
+}
+
 .center {
   text-align: center;
 }
@@ -193,4 +243,8 @@ a {
 .section {
   height: 500px;
   width: 100%;
+}
+
+.nogutter {
+  padding: 0;
 }

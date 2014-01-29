@@ -1,17 +1,22 @@
 .dynamic{data: {update: {url: "#{order_trail_pins_path(@trail)}"}}}
   = render 'shared/pins_div'
 
-%h1 Set Pin Order
+.row.map-container
+  .left-panel.col-md-2.nogutter
+    .left-container
+      %h3 Order Pins
+      %p Instructions instructions instructions
 
-.row
-  #map-canvas.col-md-8
+  .center-panel.col-md-8.nogutter
+    #map-canvas.large
 
-  .col-md-4
-    %ol{id: "pins", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
-      - @pins.each do |pin|
-        = content_tag_for(:li, pin) do
-          = pin.address
-    .button
-      = link_to 'Bury Treasure', trail_add_media_path(@trail), class: "btn btn-default"
+  .right-panel.col-md-2.nogutter
+    .right-container
+      %ol{id: "pins", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
+        - @pins.each do |pin|
+          = content_tag_for(:li, pin) do
+            = pin.address
+      .button
+        = link_to 'Bury Treasure', trail_add_media_path(@trail), class: "btn btn-default"
 
 = javascript_include_tag :order_pins
