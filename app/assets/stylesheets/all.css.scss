@@ -215,9 +215,21 @@ footer {
 }
 
 .right-container {
-  padding: 15px 15px 0 0;
+  padding: 15px 15px 0 15px;
 }
 
+ol.panels {
+  list-style: none;
+  margin: 10px;
+  padding: 0;
+  li {
+    padding: 10px;
+    background-color: white;
+    color: #033649;
+    border: 2px solid #033649;
+    border-radius: 5px;
+  }
+}
 
 // pins
 
