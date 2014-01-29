@@ -15,7 +15,7 @@
       %ol{id: "pins", class: "panels", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
         - @pins.each do |pin|
           = content_tag_for(:li, pin) do
-            = pin.address
+            = pin.name
       .button
         = link_to 'Bury Treasure', trail_add_media_path(@trail), class: "btn btn-default"
 
