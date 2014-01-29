@@ -5,7 +5,7 @@
   =render 'win_pin'
 
 .center.page-header
-  %h1 Pin #{@pin.stepnumber}
+  %h1= @pin.name
 
 %h3= @pin.address
 %p #{@pin.latitude.round(4)}, #{@pin.longitude.round(4)}

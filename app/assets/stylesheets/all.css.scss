@@ -225,7 +225,6 @@ footer {
   height: 100%;
   background-color: #033649;
   color: white;
-  word-wrap: break-word;
   overflow-y: auto;
 }
 
@@ -258,6 +257,15 @@ ol.panels {
 
 .text, .image, .video, .audio {
   padding: 10px 0px;
+}
+
+.target {
+  padding: 0 0 10px 15px;
+  border-bottom: 2px solid white;
+}
+
+.current {
+  padding: 0 10px 0 15px;
 }
 
 
