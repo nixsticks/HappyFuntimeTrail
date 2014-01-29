@@ -206,6 +206,7 @@ footer {
   background-color: #033649;
   color: white;
   height: 100%;
+  overflow: scroll;
 }
 
 .left-container {
@@ -223,6 +224,8 @@ footer {
   height: 100%;
   background-color: #033649;
   color: white;
+  word-wrap: break-word;
+  overflow-y: auto;
 }
 
 .right-container {
@@ -246,6 +249,10 @@ ol.panels {
 
 .media {
   padding-bottom: 20px;
+}
+
+.add-media {
+  padding: 5px 10px;
 }
 
 .text, .image, .video, .audio {
@@ -281,4 +288,8 @@ a.add_nested_fields {
 
 .nogutter {
   padding: 0;
+}
+
+.hidden {
+  display: none;
 }
