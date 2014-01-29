@@ -6,15 +6,16 @@
       %h3 Bury Treasure
       %p Instruction Instruction
 
-  .center-panel.col-md-8.nogutter
+  .center-panel.col-md-7.nogutter
     #map-canvas.large
 
-  .right-panel.col-md-2.nogutter
+  .right-panel.col-md-3.nogutter
     .right-container
-      %ol
+      %ol{class: "panels"}
         -@trail.pins.each do |pin|
-          %li 
-            =pin.address
+          %li{class: pin.stepnumber}
+            =pin.name
+          .hidden.add-media{id: pin.stepnumber}
             =form_for pin, url: trail_pin_path(@trail, pin), method: "put" do |f|
               .field
                 = f.fields_for :texts, pin.texts.build do |text|

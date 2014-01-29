@@ -59,3 +59,11 @@ function trailPath() {
 
   return path;
 }
+
+$(document).ready(function () {
+  $("ol.panels > li").click(function(event) {
+    event.preventDefault();
+    var target = $(this).attr("class");
+    $('#' + target).slideToggle();
+  });
+});
