@@ -109,7 +109,11 @@ body {
   h1 {
     margin-top: 50px;
     color: white;
-    font-size: 3em; }
+    font-size: 3em;
+  }
+  p {
+    color: white;
+  }
 }
 
 #about {
@@ -122,6 +126,7 @@ body {
 
 #sample_trails {
   background-image: url(gold.jpg);
+  min-height: 500px;
   height: 500px;
 }
 
@@ -132,14 +137,20 @@ body {
 }
 
 
-.section_header {
-  margin-top: 50px;
-  color: white;
-  font-size: 3em;
-}
 
-.section p {
-
+.section {
+  position: relative;
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+    font-size: 3em;
+  }
+  p {
+    color: white;
+    margin-top: 50px;
+    font-size: 2em;
+  }
 }
 
 // footer
