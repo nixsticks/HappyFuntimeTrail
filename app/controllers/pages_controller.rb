@@ -9,8 +9,4 @@ class PagesController < ApplicationController
   def help
   end
 
-  def test
-    render "pages/test"
-  end
-
 end
