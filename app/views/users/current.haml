@@ -1,30 +1,31 @@
 = render 'shared/pin_div'
 
-.center.page-header
-  %h1 Target
-#map-canvas.small
+.row.map-container
+  .left-panel.col-md-2.nogutter
+    .target
+      %h3 Target
+      %p
+        Target latitude: #{@pin.latitude.round(4)}
+      %p
+        Target longitude: #{@pin.longitude.round(4)}
+    .current
+      %h3 Current Position
+      %p
+        Latitude:
+        %span{id: "latitude"}
+      %p
+        Longitude:
+        %span{id: "longitude"}
+      = form_tag checkin_path, method: :post do
+        %input{type: "hidden", id: "latitudeinput", name: "latitude"}
+        %input{type: "hidden", id: "longitudeinput", name: "longitude"}
+        .button
+          %input{type: "submit", value: "Check in", class: "btn btn-success"}
+      %a{href: "#{abandon_path}", class: "btn btn-danger", data: {confirm: "Are you sure you want to abandon this path?"}} Abandon Hope
 
-.center
-  %h1 Current Position
+  .center-panel.col-md-10.nogutter
+    #map-canvas.large
 
-  %p
-    Latitude:
-    %span{id: "latitude"}
-  %p
-    Longitude:
-    %span{id: "longitude"}
-  %p
-    Target latitude: #{@pin.latitude.round(4)}
-  %p
-    Target longitude: #{@pin.longitude.round(4)}
-
-  = form_tag checkin_path, method: :post do
-    %input{type: "hidden", id: "latitudeinput", name: "latitude"}
-    %input{type: "hidden", id: "longitudeinput", name: "longitude"}
-    .button
-      %input{type: "submit", value: "Check in", class: "btn btn-success"}
-
-  %a{href: "#{abandon_path}", class: "btn btn-danger", data: {confirm: "Are you sure you want to abandon this path?"}} Abandon Hope
 
 = javascript_include_tag params[:controller]
 = javascript_include_tag :pin
