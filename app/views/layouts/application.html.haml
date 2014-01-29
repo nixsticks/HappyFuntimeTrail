@@ -7,8 +7,7 @@
     %script{src: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places,geometry"}
     = csrf_meta_tags
   %body
-    .container
-      = render 'shared/header'
-      = yield
-      -if on_trail?
-        = render 'shared/check_in'
+    = render 'shared/header'
+    = yield
+    -if on_trail?
+      = render 'shared/check_in'

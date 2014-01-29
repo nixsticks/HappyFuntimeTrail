@@ -34,6 +34,8 @@ HappyFuntimeTrail::Application.routes.draw do
   delete '/delete_video' => 'medias#delete_video'
   delete '/delete_image' => 'medias#delete_image'
 
+  get '/test' => "pages#test"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
