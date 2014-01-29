@@ -22,16 +22,21 @@
 // all
 
 body {
-  padding: 60px 0px;
+  padding: 50px 0px;
   height: 100%;
   width: 100%;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 
 // header stuff
 
 .header {
-  z-index: 1000;
   top: 0px;
   position: fixed;
   background-color: rgb(210, 203, 115);
@@ -121,7 +126,6 @@ footer {
   }
 }
 
-
 // flash
 
 .success {
@@ -151,9 +155,10 @@ footer {
 }
 
 .map-container {
-  position: relative;
-  top: 0;
-  bottom: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 .controls {
@@ -166,25 +171,27 @@ footer {
   background-color: #033649;
   color: white;
   height: 100%;
-  z-index: 999;
 }
 
 .left-container {
-  padding: 0 0 0 15px;
+  padding-left:15px;
+}
+
+.center-panel {
+  height: 100%;
 }
 
 .right-panel {
-  position: absolute;
-  right: 0;
-  top: 0;
+  // position: absolute;
+  // right: 0;
+  // top: 0;
   height: 100%;
-  z-index: 999;
   background-color: #033649;
   color: white;
 }
 
 .right-container {
-  padding: 0 15px 0 0;
+  padding: 15px 15px 0 0;
 }
 
 
@@ -207,6 +214,11 @@ a {
   text-decoration: none;
 }
 
+a.add_nested_fields {
+  color: white;
+  font-size: 1em;
+}
+
 .center {
   text-align: center;
 }
@@ -218,4 +230,8 @@ a {
 .section {
   height: 500px;
   width: 100%;
+}
+
+.nogutter {
+  padding: 0;
 }
