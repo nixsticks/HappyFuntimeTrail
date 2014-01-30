@@ -1,6 +1,9 @@
 // header.js
 
-$(document).ready(function () { 
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+function ready() {
   var click_count = 0;
   var $compass = $(".compass img");
   var $header = $(".header");
@@ -31,5 +34,5 @@ $(document).ready(function () {
       "normal");    
     }
     click_count++
-  })
-});
+  });
+}
