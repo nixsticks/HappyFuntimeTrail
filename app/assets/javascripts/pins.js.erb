@@ -33,8 +33,7 @@ function initialize() {
   var box = document.getElementById('pin');
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  var searchBox = new google.maps.places.SearchBox(
-    /** @type {HTMLInputElement} */(box));
+  var searchBox = new google.maps.places.SearchBox(box);
 
   // Listen for the event fired when the user selects an item from the
   // pick list. Retrieve the matching places for that item.
@@ -88,22 +87,18 @@ function initialize() {
 
   google.maps.event.addListener(map,'dblclick',function(event) {
     geocoder.geocode({latLng: event.latLng}, function(results) {
-      $('.address').each(function() {
-        if (this.value == '') {
-          if(newMarker) {
-            newMarker.setMap(null);
-          }
+      if(newMarker) {
+        newMarker.setMap(null);
+      }
 
-          newMarker = new google.maps.Marker({
-            position: event.latLng,
-            map: map,
-            title: results[0].formatted_address,
-            draggable: true
-          });
-
-          clickMarker(newMarker);
-        }
+      newMarker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        title: results[0].formatted_address,
+        draggable: true
       });
+
+      clickMarker(newMarker);
     });
   });
 }
@@ -118,6 +113,7 @@ $(document).on("click", "#setPin", function(event){
     title: address
   });
   permanentMarkers.push(permanentMarker);
+  emptyInputs();
   fillInputs('.name', name, permanentMarker);
   fillInputs('.address', address, permanentMarker);
   fillInputs('.lat', currentMarker.getPosition().lat(), permanentMarker);
@@ -159,14 +155,9 @@ function clickMarker(marker) {
 }
 
 function fillInputs(classname, content, marker) {
-  $(classname).each(function() {
-    if (this.value == '') {
-      $(this).val(content);
-      // add a class to the input so i can delete it along with the marker if you decide to remove the pin
-      $(this).addClass(String(permanentMarkers.indexOf(marker)));
-      return false;
-    }
-  });
+  var $empty = $(firstEmpty(classname));
+  $empty.val(content);
+  $empty.addClass(String(permanentMarkers.indexOf(marker)));
 }
 
 function infoWindowRemove(marker, name, position) {
@@ -204,7 +195,23 @@ function persistPins(){
     var name = $(".name." + position).val();
 
     infoWindowRemove(permanentMarker, name, position);
-    
+
     return permanentMarker;
+  }
+}
+
+
+function firstEmpty(classname) {
+  return $(classname).filter(function() {
+    return !this.value;
+  })[0];
+}
+
+function emptyInputs() {
+  if (firstEmpty(".address")) {
+    return true;
+  }
+  else {
+    $(".add_nested_fields").trigger("click");
   }
 }
