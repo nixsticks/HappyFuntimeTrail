@@ -3,8 +3,12 @@ class TrailsController < ApplicationController
   # before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @trail = Trail.new
-    5.times {@trail.pins.build}
+    if current_user
+      @trail = Trail.new
+      5.times {@trail.pins.build}
+    else
+      render "shared/not_logged_in"
+    end
   end
 
   def create
@@ -79,6 +83,6 @@ class TrailsController < ApplicationController
   private 
 
     def trail_params
-      params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :latitude, :longitude, :address, :_destroy])
+      params.require(:trail).permit(:name, :length, :description, :creator_id, :pins_attributes => [:id, :name, :latitude, :longitude, :address, :_destroy])
     end
 end

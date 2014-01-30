@@ -29,12 +29,12 @@ function initialize() {
  }
 
   // Create the search box and link it to the UI element.
-  var input = /** @type {HTMLInputElement} */(
-      document.getElementById('pin'));
+  var input = document.getElementById('search');
+  var box = document.getElementById('pin');
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   var searchBox = new google.maps.places.SearchBox(
-    /** @type {HTMLInputElement} */(input));
+    /** @type {HTMLInputElement} */(box));
 
   // Listen for the event fired when the user selects an item from the
   // pick list. Retrieve the matching places for that item.
@@ -109,6 +109,7 @@ function initialize() {
 }
 
 $(document).on("click", "#setPin", function(event){
+  var name = $("#name").val();
   currentMarker.setMap(null);
   var permanentMarker = new google.maps.Marker({
     position: currentMarker.getPosition(),
@@ -117,13 +118,17 @@ $(document).on("click", "#setPin", function(event){
     title: address
   });
   permanentMarkers.push(permanentMarker);
+  fillInputs('.name', name, permanentMarker);
   fillInputs('.address', address, permanentMarker);
   fillInputs('.lat', currentMarker.getPosition().lat(), permanentMarker);
   fillInputs('.long', currentMarker.getPosition().lng(), permanentMarker);
   currentMarker = null;
 
+  var position = permanentMarkers.indexOf(permanentMarker);
+  var name = $(".name." + position).val();
+
   google.maps.event.addListener(permanentMarker,'click',function(e) {
-    infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
+      infowindow.setContent('<p>' + name + '</p>' + '<button id="removePin" class="' + position + '">Remove Pin</button>');
     infowindow.open(map, permanentMarker);
   });
 });
@@ -144,6 +149,7 @@ function clickMarker(marker) {
         address = results[0].formatted_address;
         infowindow.setContent(
           '<p>' + address + '</p>' +
+          '<p>Name:<br/><input type="text" id="name" value="' + address + '" /></p>' +
           '<button id="setPin">Set Pin</button>'
           );
         infowindow.open(map, marker);
@@ -190,8 +196,11 @@ function persistPins(){
 
     permanentMarkers.push(permanentMarker);
 
+    var position = permanentMarkers.indexOf(permanentMarker);
+    var name = $(".name." + position).val();
+
     google.maps.event.addListener(permanentMarker,'click',function(e) {
-      infowindow.setContent('<button id="removePin" class="' + permanentMarkers.indexOf(permanentMarker) + '">Remove Pin</button>');
+      infowindow.setContent('<p>' + name + '</p>' + '<button id="removePin" class="' + position + '">Remove Pin</button>');
       infowindow.open(map, permanentMarker);
     });
 

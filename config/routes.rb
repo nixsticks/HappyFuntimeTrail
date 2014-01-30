@@ -1,9 +1,11 @@
 HappyFuntimeTrail::Application.routes.draw do
   root 'pages#index'
-  get '/about' => 'pages#about'
-  get '/help' => 'pages#help'
+  get '/about' => 'pages#about', as: :about
+  get '/help' => 'pages#help', as: :help
 
   get '/current' => 'users#current', as: :current
+  get '/abandon' => 'users#abandon', as: :abandon
+
   resources :users
   get '/signup' => 'users#new'
   post '/checkin' => 'users#checkin', as: :checkin
@@ -31,6 +33,8 @@ HappyFuntimeTrail::Application.routes.draw do
   delete '/delete_audio' => 'medias#delete_audio'
   delete '/delete_video' => 'medias#delete_video'
   delete '/delete_image' => 'medias#delete_image'
+
+  get '/test' => "pages#test"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

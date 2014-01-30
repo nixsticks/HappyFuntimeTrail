@@ -43,8 +43,13 @@ class UsersController < ApplicationController
   end
 
   def current
-    @user = current_user
-    @pin = @user.current_pin
+    if current_user
+      @user = current_user
+      @pin = @user.current_pin
+      render action: 'current'
+    else
+      render 'shared/not_logged_in'
+    end
   end
 
   def checkin
@@ -58,6 +63,11 @@ class UsersController < ApplicationController
       flash.now[:error] = "You're not there yet!"
       render 'current'
     end
+  end
+
+  def abandon
+    current_user.stop_trail
+    redirect_to root_path
   end
 
   private

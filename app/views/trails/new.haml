@@ -1,8 +1,20 @@
 = render 'shared/persist_pins_div'
 
-#map-canvas
+.row.map-container
+  .left-panel.col-md-2.nogutter
+    .left-container
+      %h3 Make A New Map
+      %p Instruction Instruction
+      %p More instructions
+      %p i hate everything
 
-%input{id: "pin", class: "controls", type: "text", placeholder: "Search"}
-= render 'form'
+  .center-panel.col-md-8.nogutter
+    #map-canvas.large
+    #search
+      %input{id: "pin", class: "controls", type: "text", placeholder: "Search"}
+
+  .right-panel.col-md-2.nogutter
+    .right-container
+      = render 'form'
 
 = javascript_include_tag :pins

@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @home_page = true
   end
 
   def about
@@ -7,4 +8,5 @@ class PagesController < ApplicationController
 
   def help
   end
+
 end

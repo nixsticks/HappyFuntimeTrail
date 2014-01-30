@@ -1,0 +1,11 @@
+%nav{class: "header cf"}
+  =render 'shared/info_header' if @home_page
+  .compass
+    =image_tag "compass_cropped.png"
+  =render 'shared/user_header'    
+
+
+- if flash[:success]
+  %p= flash[:success]
+- elsif flash[:error]
+  %p= flash[:error]
