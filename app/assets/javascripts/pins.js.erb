@@ -127,10 +127,7 @@ $(document).on("click", "#setPin", function(event){
   var position = permanentMarkers.indexOf(permanentMarker);
   var name = $(".name." + position).val();
 
-  google.maps.event.addListener(permanentMarker,'click',function(e) {
-      infowindow.setContent('<p>' + name + '</p>' + '<button id="removePin" class="' + position + '">Remove Pin</button>');
-    infowindow.open(map, permanentMarker);
-  });
+  infoWindowRemove(permanentMarker, name, position);
 });
 
 $(document).on("click", "#removePin", function(event){
@@ -172,6 +169,13 @@ function fillInputs(classname, content, marker) {
   });
 }
 
+function infoWindowRemove(marker, name, position) {
+  google.maps.event.addListener(marker,'click',function(e) {
+    infowindow.setContent('<p>' + name + '</p>' + '<button id="removePin" class="' + position + '">Remove Pin</button>');
+    infowindow.open(map, marker);
+  });
+}
+
 function persistPins(){
   for (var i = 0, pin; pin = pins[i]; i++) {
     $(".lat").each(function (){
@@ -199,11 +203,8 @@ function persistPins(){
     var position = permanentMarkers.indexOf(permanentMarker);
     var name = $(".name." + position).val();
 
-    google.maps.event.addListener(permanentMarker,'click',function(e) {
-      infowindow.setContent('<p>' + name + '</p>' + '<button id="removePin" class="' + position + '">Remove Pin</button>');
-      infowindow.open(map, permanentMarker);
-    });
-
+    infoWindowRemove(permanentMarker, name, position);
+    
     return permanentMarker;
   }
 }
