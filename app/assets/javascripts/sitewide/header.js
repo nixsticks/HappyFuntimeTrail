@@ -1,25 +1,16 @@
 // header.js
 
 $(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).on('page:change', ready);
 
 function ready() {
+  var click_count = 0;
   var $compass = $(".compass img");
   var $header = $(".header");
 
   setTimeout(function(){
     $header.animate({ top: "-60px" }, "normal");  
   }, 2000);
-
-  $compass.toggle()
-    
-  function pullUp() {
-    $header.animate({ top: "-60px"}, "normal");
-  }
-
-  function pullDown() {
-    $header.animate({ top: "0px"}, "normal");
-  }
 
   $compass.click(function (){
     if(click_count % 2 == 0) {
