@@ -1,0 +1,22 @@
+
+
+%div{id: "trails_carousel", class: "carousel slide", data:{ride:"carousel"}}
+
+  .carousel-inner{style: "height: 500px;"}
+    .item.active
+      %img{src: "http://placekitten.com/700/300"}
+      %img{src: "http://placekitten.com/700/300"}
+      .carousel-caption
+        TESTING
+    .item 
+      %img{src: "http://placekitten.com/650/300"}
+      .carousel-caption
+        POOP
+
+  %a{class: "left carousel-control", href: "#trails_carousel", data:{slide: "prev"}}
+    %span{class: "glyphicon glyphicon-chevron-left"}
+  %a{class: "right carousel-control", href: "#trails_carousel", data:{slide: "next"}}
+    %span{class: "glyphicon glyphicon-chevron-right"}
+
+
+

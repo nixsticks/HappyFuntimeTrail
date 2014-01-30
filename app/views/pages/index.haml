@@ -22,8 +22,10 @@
   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 .section_index{id: "sample_trails"}
-  .red_layer
+  .red_layer.center_div
+    =render "trails_carousel"
 
+     
 .section_index{id: "start"}
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -46,4 +48,4 @@
   = render 'signed_out'
 
 =javascript_include_tag :smooth_scroll
-=javascript_include_tag :parallax
+=javascript_include_tag :bootstrap

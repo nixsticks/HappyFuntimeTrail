@@ -1,17 +1,9 @@
+// header.js
+
 $(document).ready(function () { 
   var click_count = 0;
   var $compass = $(".compass img");
   var $header = $(".header");
-
-  // $compass.toggle(
-  //   function(event){
-  //     $header.animate({top: "0px"}, "normal");
-  //     event.preventDefault();
-  //   },
-  //   function(event){
-  //     $header.animate({top: "-60px"}, "normal");
-  //     event.preventDefault();
-  //   });
 
   setTimeout(function(){
     $header.animate(

@@ -2,7 +2,11 @@
   "vars": {},
   "css": [
     "grid.less",
+    "glyphicons.less",
+    "carousel.less",
     "responsive-utilities.less"
   ],
-  "js": []
+  "js": [
+    "carousel.js"
+  ]
 }
