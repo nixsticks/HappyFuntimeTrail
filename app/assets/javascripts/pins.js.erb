@@ -174,16 +174,16 @@ function fillInputs(classname, content, marker) {
 
 function persistPins(){
   for (var i = 0, pin; pin = pins[i]; i++) {
-    marker = setMarker(new google.maps.LatLng(pin.latitude, pin.longitude));
-
     $(".lat").each(function (){
       if (this.value === pin.latitude) {
         var group = $(this).parent();
         group.children().each(function() {
-          $(this).addClass(String(permanentMarkers.indexOf(marker)));
+          $(this).addClass(String(i));
         })
       }
     });
+
+    marker = setMarker(new google.maps.LatLng(pin.latitude, pin.longitude));
   }
 
   function setMarker(position) {

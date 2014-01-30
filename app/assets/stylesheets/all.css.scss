@@ -52,6 +52,9 @@ body {
   height: 50px;
   text-align: center;
   z-index: 1;
+  -webkit-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
+     -moz-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
+          box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
 
   ul { display: inline-block; }
   
@@ -87,8 +90,8 @@ body {
 .compass {
   position: absolute; 
   display: inline-block;
-  margin: 0 auto;
-  right: 49%;
+  left: 50%;
+  margin-left: -38px;
 
   img {
     width: 100px;
@@ -215,7 +218,7 @@ footer {
 }
 
 .left-panel {
-  background-color: #033649;
+  background-color: $darkBlue;
   color: white;
   height: 100%;
   overflow: scroll;
@@ -234,13 +237,36 @@ footer {
   // right: 0;
   // top: 0;
   height: 100%;
-  background-color: #033649;
+  background-color: $darkBlue;
   color: white;
   overflow-y: auto;
 }
 
 .right-container {
   padding: 15px 15px 0 15px;
+}
+
+.right-container form {
+  input, textarea {
+    margin-top: 10px;
+    min-height: 30px;
+    border-radius: 2px;
+    border: 2px solid #dce4ec;
+    color: $darkBlue;
+  }
+
+  textarea {
+    min-height: 100px;
+    min-width: 154px;
+  }
+
+  .form-group {
+    margin: 10px 0;
+  }
+
+  label {
+    font-weight: bold;
+  }
 }
 
 ol.panels {
@@ -250,8 +276,8 @@ ol.panels {
   li {
     padding: 10px;
     background-color: white;
-    color: #033649;
-    border: 2px solid #033649;
+    color: $darkBlue;
+    border: 2px solid $darkBlue;
     border-radius: 5px;
   }
 }
@@ -291,6 +317,8 @@ a {
 a.add_nested_fields {
   color: white;
   font-size: 1em;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
 .center {

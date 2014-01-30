@@ -3,14 +3,15 @@
     .form-group
       = f.label :name
       %br
-      = f.text_field :name
+      = f.text_field :name, placeholder: "Trail name"
     .form-group
       = f.label :description
       %br
-      = f.text_area :description
+      = f.text_area :description, placeholder: "Write about how awesome your trail is!"
     .form-group
       = f.hidden_field :creator_id, value: current_user.id
     .form-group
+      = f.label :pins
       #pins
         = f.fields_for :pins do |pin|
           .pin-group

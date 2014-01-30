@@ -16,4 +16,5 @@
 //= require jquery_nested_form
 //= require turbolinks
 //= require jquery-map
+//= require_tree ./sitewide
 
