@@ -10,17 +10,7 @@ function ready() {
   setTimeout(function(){
     $header.animate({ top: "-60px" }, "normal");  
   }, 2000);
-
-  $compass.toggle()
-    
-  function pullUp() {
-    $header.animate({ top: "-60px"}, "normal");
-  }
-
-  function pullDown() {
-    $header.animate({ top: "0px"}, "normal");
-  }
-
+  
   $compass.click(function (){
     if(click_count % 2 == 0) {
       console.log("Open sesame");
