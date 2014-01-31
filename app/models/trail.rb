@@ -46,7 +46,7 @@ class Trail < ActiveRecord::Base
     (user == self.creator) || user.god?
   end
 
-  def static_img_url(img_width, img_height, maptype="hybrid", path_color="0x0000ff80", path_weight="4")
+  def static_img_url(img_width, img_height, maptype="hybrid", path_color="red", path_weight="4")
     url = "http://maps.googleapis.com/maps/api/staticmap?"\
           "&size=#{img_width}x#{img_height}"\
           "&maptype=#{maptype}"

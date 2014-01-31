@@ -3,14 +3,17 @@
 %div{id: "trails_carousel", class: "carousel slide", data:{ride:"carousel"}}
 
   .carousel-inner{style: "height: 500px;"}
-    .item.active
-      %img{src: "http://placekitten.com/700/300"}
-      .carousel-caption
-        %h1 TESTING
-    .item 
-      %img{src: "http://placekitten.com/650/300"}
-      .carousel-caption
-        %h1 POOP
+    -@trail_urls.each_with_index do |url_triplet, i|
+      -if i == 0
+        .item.active
+          -url_triplet.each do |url|
+            %img{src: url, class: "left"}
+            .carousel-caption
+      -else 
+        .item
+          -url_triplet.each do |url|
+            %img{src: url, class: "left"}
+            .carousel-caption
 
   %a{class: "left carousel-control", href: "#trails_carousel", data:{slide: "prev"}}
     %span{class: "glyphicon glyphicon-chevron-left"}

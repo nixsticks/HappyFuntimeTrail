@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     @home_page = true
-    @trail_urls = retrieve_trail_urls(10)
+    @trail_urls = trail_urls_last(12).each_slice(3).to_a
 
 
   end
