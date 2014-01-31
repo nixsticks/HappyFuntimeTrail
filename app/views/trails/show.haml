@@ -1,15 +1,15 @@
 = render 'shared/pins_div'
 
-.row.map-container
-  .center-panel.col-md-9.nogutter
-    #map-canvas.large
+.map-container
+  #map-canvas.large
 
-  .right-panel.col-md-3.nogutter
-    .right-container
+  .float-panel.col-md-3.nogutter
+    .float-container
       %h1= @trail.name
+      %h3 by #{@trail.creator.username}
       %p= @trail.description
-      .button.center
-        = link_to 'Start Trail', trail_start_path(@trail), method: :post, class: "btn btn-default"
+      .button.bottom
+        = link_to 'Start Trail', trail_start_path(@trail), method: :post
 
 
 = javascript_include_tag :trails

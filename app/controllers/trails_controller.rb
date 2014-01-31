@@ -58,7 +58,7 @@ class TrailsController < ApplicationController
     @trail = Trail.find(params[:id])
     if @trail.update_attributes(trail_params)
       flash[:success] = "Trail updated!"
-      redirect_to @trail
+      redirect_to trail_order_pins_path(@trail)
     else
       flash.now[:error] = "Unable to save trail."
       render 'edit'

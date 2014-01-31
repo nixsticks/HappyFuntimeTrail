@@ -2,8 +2,13 @@ $(document).ready(function(){
   var $header = $("nav");
 
   $header.addClass("down");
+  
   $(window).scroll(function() {
-    $header.removeClass("down");
+    if(document.body.scrollTop == 0) {
+      $header.addClass("down");
+    } else {
+      $header.removeClass("down");
+    }
   });
   
   // $(function() {
