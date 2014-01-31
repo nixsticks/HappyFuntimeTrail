@@ -4,7 +4,7 @@
 .row.map-container
   .left-panel.col-md-2.nogutter
     .left-container
-      %h3 Order Pins
+      %h1 Instructions
       %p Instructions instructions instructions
 
   .center-panel.col-md-8.nogutter
@@ -12,11 +12,12 @@
 
   .right-panel.col-md-2.nogutter
     .right-container
+      %h1 Order Pins
       %ol{id: "pins", class: "panels", data: {update: {url: "#{sort_trail_pins_path(@trail)}"}} }
         - @pins.each do |pin|
           = content_tag_for(:li, pin) do
             = pin.name
-      .button
+      .button.bottom
         = link_to 'Bury Treasure', trail_add_media_path(@trail), class: "btn btn-default"
 
 = javascript_include_tag :order_pins

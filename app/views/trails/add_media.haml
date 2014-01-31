@@ -3,14 +3,15 @@
 .row.map-container
   .left-panel.col-md-2.nogutter
     .left-container
-      %h3 Bury Treasure
+      %h1 Instructions
       %p Instruction Instruction
 
-  .center-panel.col-md-7.nogutter
+  .center-panel.col-md-8.nogutter
     #map-canvas.large
 
-  .right-panel.col-md-3.nogutter
+  .right-panel.col-md-2.nogutter
     .right-container
+      %h1 Bury Treasure
       %ol{class: "panels"}
         -@trail.pins.each do |pin|
           %li{class: pin.stepnumber}
@@ -43,5 +44,7 @@
                   = video.hidden_field :user_id, value: current_user.id, class: 'form-control'
               .button
                 =f.submit "Add media!", class: "btn btn-default"
+    .button.bottom
+      = link_to "Done!", @trail
 
 =javascript_include_tag :add_media

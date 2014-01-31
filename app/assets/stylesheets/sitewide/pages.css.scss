@@ -6,8 +6,36 @@ $darkGreen: #036564;
 $darkBlue: #033649;
 $darkestBlue: rgb(5, 17, 40);
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin border-radius-bottom($radius) {
+  -webkit-border-radius: 0 0 $radius $radius;
+     -moz-border-radius: 0 0 $radius $radius;
+      -ms-border-radius: 0 0 $radius $radius;
+          border-radius: 0 0 $radius $radius;
+}
 
+@mixin button {
+  display: inline-block;
+  color: $darkBlue;
+  background-color: white;
+  border: 2px solid $darkBlue;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  @include border-radius(5px);
+}
 
+@mixin button-hover {
+  color: white;
+  background-color: $darkBlue;
+  border: 2px solid white;
+}
 
 // all
 
@@ -147,12 +175,19 @@ nav {
 //   } 
 // }
 
-.carousel .carousel-inner .item .img {
+.carousel-inner > .item > img {
   display: inline-block;
   height: 500px;
+  width: 50%;
 }
 
-  
+.carousel-inner > .item > img.left {
+  float: left;
+}
+
+.carousel-inner > .item > img.right {
+  float: right;
+}
 
 .section_index {
   height: 700px;
@@ -183,6 +218,7 @@ footer {
 .form {
   input {
     display: block;
+    margin-bottom: 10px;
   }
 }
 
@@ -228,7 +264,7 @@ footer {
 .controls {
   width: 200px;
   height: 30px;
-  border-radius: 5px;;
+  @include border-radius(5px);
 }
 
 .left-panel {
@@ -240,7 +276,7 @@ footer {
 }
 
 .left-container {
-  padding-left:15px;
+  padding: 15px 0 15px 15px;
 }
 
 .center-panel {
@@ -251,33 +287,50 @@ footer {
   height: 100%;
   background-color: $darkBlue;
   color: white;
+  overflow-x: hidden;
   overflow-y: auto;
   border-left: 1px solid $darkestBlue;
+}
+
+.float-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: $darkBlue;
+  color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid $darkestBlue;
+  @include border-radius-bottom(5px);
 }
 
 .right-container {
   padding: 15px 15px 0 15px;
 }
 
+.float-container {
+  padding: 0 30px 15px 15px;
+  // z-index: 1000;
+}
+
 .right-container form {
   input, textarea {
     margin-top: 10px;
     min-height: 30px;
-    border-radius: 2px;
+    @include border-radius(2px);
     border: 0;
     padding: 5px;
     color: $darkBlue;
   }
 
   textarea {
-    min-height: 100px;
-    min-width: 150px;
+    min-height: 200px;
+    min-width: 156px;
   }
 
   .form-group {
     margin: 10px 0;
   }
-
 
   label {
     font-weight: bold;
@@ -286,15 +339,47 @@ footer {
 
 ol.panels {
   list-style: none;
-  margin: 10px;
+  margin: 10px 0;
   padding: 0;
   li {
     padding: 10px;
     background-color: white;
     color: $darkBlue;
     border: 2px solid $darkBlue;
-    border-radius: 5px;
+    @include border-radius(5px);
+    text-align: center;
   }
+  cursor: pointer;
+}
+
+.button.bottom {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  margin-left: -100px;
+  a {
+    @include button;
+    font-size: 1.5em;
+    min-width: 200px;
+  }
+
+  a:hover {
+    @include button-hover;
+  }
+}
+
+.button.inpanel a, .button.inpanel input {
+  @include button;
+  font-size: 1em;
+  min-width: 156px;
+}
+
+.button.inpanel a:hover, .button.inpanel input:hover {
+  @include button-hover;
+}
+
+.gm-style-cc {
+  display: none;
 }
 
 // pins
@@ -340,17 +425,14 @@ a.add_nested_fields {
   text-align: center;
 }
 
-.button {
-  padding: 20px 0px;
-}
-
 .section {
   height: 800px;
   width: 100%;
 }
 
 .nogutter {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
