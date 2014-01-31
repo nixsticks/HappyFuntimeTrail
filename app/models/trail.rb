@@ -45,4 +45,31 @@ class Trail < ActiveRecord::Base
   def editable?(user)
     (user == self.creator) || user.god?
   end
+
+  def static_img_url(img_width, img_height, maptype="hybrid", path_color="0x0000ff80", path_weight="4")
+    url = "http://maps.googleapis.com/maps/api/staticmap?"\
+          "&size=#{img_width}x#{img_height}"\
+          "&maptype=#{maptype}"
+    pins = self.pins
+    pin_coords = []
+
+    pins.each_with_index do |pin, i| 
+      pin_latlng = "#{pin.latitude.to_f},#{pin.longitude.to_f}"
+      pin_coords << pin_latlng
+      pin_url = "&markers=color:red|label:#{i}|#{pin_latlng}"
+      url << pin_url
+    end
+
+    #now making part of the url that creates the trail path
+    path_url = "&path=color:#{path_color}|weight:#{path_weight}"
+
+    pin_coords.each do |pcoord|
+      path_url << "|" + pcoord
+    end
+
+    url << path_url
+    url << "&sensor=false"
+    url
+  end
+  
 end
