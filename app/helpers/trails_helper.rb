@@ -7,14 +7,14 @@ module TrailsHelper
     end
   end
 
-  def trail_urls_last(number_of_trails)
+  def carousel_trails(number_of_trails)
     trails = Trail.last(number_of_trails)
-    urls = []
-    urls = trails.collect do |trail|
-      trail.static_img_url(400, 500, maptype="satellite")
+    trail_arr = []
+    trails.each_with_index do |trail, i|
+      trail_url = trail.static_img_url(400, 500, maptype="satellite")
+      trail_arr << [trail, trail_url]
     end
-
-    urls
+    trail_arr
   end
 
 end
