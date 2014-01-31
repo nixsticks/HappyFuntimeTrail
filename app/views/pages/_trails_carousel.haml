@@ -7,8 +7,9 @@
       -if i == 0
         .item.active
           -trail_triplet.each do |trail_arr|
-            %img{src: trail_arr[1], class: "left"}
-            %img= trail_arr[0].name
+            .static_trail
+              %img{src: trail_arr[1], class: "left"}
+              %h3= trail_arr[0].name
       -else 
         .item
           -trail_triplet.each do |trail_arr|

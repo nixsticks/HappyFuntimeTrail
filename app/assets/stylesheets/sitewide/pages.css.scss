@@ -152,9 +152,6 @@ nav {
   height: 500px;
 }
 
-.static_trail {
-  margin: 10px;
-}
 
 .red_layer {
   width: 100%;
@@ -175,10 +172,10 @@ nav {
 //   } 
 // }
 
-.carousel-inner > .item > img {
+.carousel-inner  .item  .static_trail  img {
   display: inline-block;
-  height: 500px;
-  width: 50%;
+  border: 2px solid black;
+  border-radius: 20px;
 }
 
 .carousel-inner > .item > img.left {
@@ -187,6 +184,15 @@ nav {
 
 .carousel-inner > .item > img.right {
   float: right;
+}
+
+.item {
+  margin: 0 auto;
+}
+
+.static_trail {
+  display: inline-block;
+  margin: 60px;
 }
 
 .section_index {
