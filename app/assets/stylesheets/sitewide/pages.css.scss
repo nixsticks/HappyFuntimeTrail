@@ -308,6 +308,7 @@ footer {
   overflow-y: auto;
   border: 1px solid $darkestBlue;
   @include border-radius-bottom(5px);
+  z-index:999;
 }
 
 .right-container {
@@ -363,6 +364,7 @@ ol.panels {
   bottom: 25px;
   left: 50%;
   margin-left: -100px;
+  z-index: 999;
   a {
     @include button;
     font-size: 1.5em;

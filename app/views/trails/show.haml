@@ -8,7 +8,7 @@
       %h1= @trail.name
       %h3 by #{@trail.creator.username}
       %p= @trail.description
-      .button.bottom
+      .button.inpanel
         = link_to 'Start Trail', trail_start_path(@trail), method: :post
 
 
