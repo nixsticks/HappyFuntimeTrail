@@ -20,7 +20,7 @@ HappyFuntimeTrail::Application.routes.draw do
       collection { get :order }
     end
   end
-
+  
   post '/trails/:id/start' => 'trails#start', as: :trail_start
   
   get '/trails/:id/order_pins' => 'trails#order_pins', as: :trail_order_pins

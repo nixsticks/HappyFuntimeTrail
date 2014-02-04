@@ -17,6 +17,7 @@ class TrailsController < ApplicationController
       flash[:success] = "Trail created!"
       @trail.increment_stepnumbers
       @trail.set_length
+      @trail.set_popularity
       redirect_to trail_order_pins_path(@trail)
     else
       flash.now[:error] = "Unable to save trail."
@@ -40,7 +41,18 @@ class TrailsController < ApplicationController
   end
 
   def index
-    @trails = Trail.all
+    case params[:order_by]
+    when 'popularity'
+      @trails = Trail.paginate(page: params[:page], per_page: 3).order('popularity DESC')
+    when 'name'
+      @trails = Trail.paginate(page: params[:page], per_page: 3).order('name')
+    when 'newest'
+       @trails = Trail.paginate(page: params[:page], per_page: 3).order('created_at DESC')
+    when 'oldest'
+      @trails = Trail.paginate(page: params[:page], per_page: 3).order('created_at ASC')
+    else 
+      @trails = Trail.paginate(page: params[:page], per_page: 3)
+    end
   end
 
   def order_pins
