@@ -10,7 +10,6 @@ gem 'geocoder'
 gem 'paperclip'
 gem 'will_paginate', '~> 3.0.5'
 
-
 # Use sqlite3 as the database for Active Record
 
 group :development do

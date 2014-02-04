@@ -1,24 +1,23 @@
-.col-md-4
-  = nested_form_for @trail, role: "form" do |f|
-    .form-group
-      = f.label :name
-      %br
-      = f.text_field :name, placeholder: "Trail name"
-    .form-group
-      = f.label :description
-      %br
-      = f.text_area :description, placeholder: "Write about how awesome your trail is!"
-    .form-group
-      = f.hidden_field :creator_id, value: current_user.id
-    .form-group
-      = f.label :pins
-      #pins
-        = f.fields_for :pins do |pin|
-          .pin-group
-            = pin.hidden_field :latitude, class: "lat"
-            = pin.hidden_field :longitude, class: "long"
-            = pin.hidden_field :address, class: "address"
-            = pin.text_field :name, class: "name"
-        = f.link_to_add "Add pin", :pins
-    .buttons
-      = f.submit onclick: "return confirm('Once you set your pins, you will not be able to remove or add more. Are you sure?')"
+= nested_form_for @trail, role: "form" do |f|
+  .form-group
+    = f.label :name
+    %br
+    = f.text_field :name, placeholder: "Trail name"
+  .form-group
+    = f.label :description
+    %br
+    = f.text_area :description, placeholder: "Write about how awesome your trail is!"
+  .form-group
+    = f.hidden_field :creator_id, value: current_user.id
+  .form-group
+    = f.label :pins
+    #pins
+      = f.fields_for :pins do |pin|
+        .pin-group
+          = pin.hidden_field :latitude, class: "lat"
+          = pin.hidden_field :longitude, class: "long"
+          = pin.hidden_field :address, class: "address"
+          = pin.text_field :name, class: "name"
+      = f.link_to_add "Add pin", :pins
+  .button.bottom
+    = f.submit onclick: "return confirm('Once you set your pins, you will not be able to remove or add more. Are you sure?')"

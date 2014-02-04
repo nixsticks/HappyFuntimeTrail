@@ -19,6 +19,8 @@ class Trail < ActiveRecord::Base
   def next_pin(pin, user) #pass in user's current pin
     if pins.last.stepnumber == pin.stepnumber
       self.followers << user unless self.followers.include?(user)
+      n = self.popularity
+      self.update_attribute(:popularity, n + 1)
       user.stop_trail
     else
       user.update_attribute(:current_pin_id, pins.find_by_stepnumber(pin.stepnumber + 1).id)
@@ -40,6 +42,10 @@ class Trail < ActiveRecord::Base
 
   def get_length
     return self.length
+  end
+
+  def set_popularity
+    self.update_attribute(:popularity, 0)
   end
 
   def editable?(user)

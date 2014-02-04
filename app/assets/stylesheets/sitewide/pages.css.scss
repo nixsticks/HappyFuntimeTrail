@@ -21,11 +21,8 @@ $darkestBlue: rgb(5, 17, 40);
           border-radius: 0 0 $radius $radius;
 }
 
-@mixin button {
+@mixin button-block {
   display: inline-block;
-  color: $darkBlue;
-  background-color: white;
-  border: 2px solid $darkBlue;
   padding: 10px;
   font-weight: bold;
   text-align: center;
@@ -33,10 +30,43 @@ $darkestBlue: rgb(5, 17, 40);
   @include border-radius(5px);
 }
 
+@mixin button {
+  color: $darkBlue;
+  background-color: white;
+  border: 2px solid $darkBlue;
+}
+
+@mixin button-inverse {
+  color: white;
+  background-color: $darkBlue;
+  border: 2px solid white;
+}
+
 @mixin button-hover {
   color: white;
   background-color: $darkBlue;
   border: 2px solid white;
+}
+
+@mixin button-hover-inverse {
+  color: $darkBlue;
+  background-color: white;
+  border: 2px solid $darkBlue;
+}
+
+@mixin header-shadow {
+  -webkit-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
+   -moz-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
+        box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
+}
+
+@mixin form($height) {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  min-height: $height;
+  width: 100%;
+  padding: 5px;
+  color: $darkBlue;
 }
 
 // all
@@ -63,9 +93,7 @@ nav {
   height: 50px;
   text-align: center;
   z-index: 1;
-  -webkit-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
-     -moz-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
-          box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
+  @include header-shadow;
 
   -webkit-transition: top 1s;
      -moz-transition: top 1s;
@@ -112,7 +140,8 @@ nav {
 
   img {
     width: 100px;
-    height: 100px; }
+    height: 100px; 
+  }
 
   h3 {
     display: inline-block;
@@ -196,6 +225,10 @@ footer {
     display: block;
     margin-bottom: 10px;
   }
+
+  input[type="text"], input[type="password"] {
+    width: 100%;
+  }
 }
 
 #search {
@@ -278,6 +311,7 @@ footer {
   overflow-y: auto;
   border: 1px solid $darkestBlue;
   @include border-radius-bottom(5px);
+  z-index:999;
 }
 
 .right-container {
@@ -291,17 +325,9 @@ footer {
 
 .right-container form {
   input, textarea {
-    margin-top: 10px;
-    min-height: 30px;
+    @include form(30px);
     @include border-radius(2px);
     border: 0;
-    padding: 5px;
-    color: $darkBlue;
-  }
-
-  textarea {
-    min-height: 200px;
-    min-width: 156px;
   }
 
   .form-group {
@@ -333,21 +359,41 @@ ol.panels {
   bottom: 25px;
   left: 50%;
   margin-left: -100px;
-  a {
+  z-index: 999;
+  a, input {
+    @include button-block;
     @include button;
     font-size: 1.5em;
     min-width: 200px;
   }
 
-  a:hover {
+  a:hover, input:hover {
     @include button-hover;
   }
 }
 
 .button.inpanel a, .button.inpanel input {
+  @include button-block;
   @include button;
   font-size: 1em;
   min-width: 156px;
+}
+
+.button.inpanel a:hover, .button.inpanel input:hover {
+  @include button-hover;
+}
+
+.button.inpanel.inverse {
+  a, input {
+    @include button-block;
+    @include button-inverse;
+    font-size: 1em;
+    min-width: 156px;
+  }
+
+  a:hover, input:hover {
+    @include button-hover-inverse;
+  }
 }
 
 .button.inpanel a:hover, .button.inpanel input:hover {
@@ -381,6 +427,37 @@ ol.panels {
   padding: 0 10px 0 15px;
 }
 
+// users
+
+.user {
+  input {
+    @include border-radius(5px);
+    @include form(35px);
+    border: 0;
+  }
+
+  label {
+    color: white;
+    font-weight: bold;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+}
+
+// trail show
+
+.trail-container {
+  img {
+    @include header-shadow;
+  }
+}
+
+.trail-description {
+  max-height: 100px;
+  overflow-y: auto;
+}
 
 // general styles
 
@@ -411,14 +488,40 @@ a.add_nested_fields {
   padding-right: 0;
 }
 
-
 .center_div {
   margin: 0 auto
 }
 
+.title {
+  margin-top: 70px;
+}
 
 .hidden {
   display: none;
+}
+
+.darkblue {
+  background-color: $darkBlue;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.pagination {
+  clear: both;
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+  padding: 30px;
+  text-align: right;
 }
 
 // clearfix
