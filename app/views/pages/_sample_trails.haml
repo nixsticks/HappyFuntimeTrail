@@ -1,0 +1,6 @@
+%h1 Sample Trails
+.row
+  -@sample_trails.each do |trail_arr|
+    .col-md-3.static_trail
+      %img{src: trail_arr[1]}
+      %h3= trail_arr[0].name
