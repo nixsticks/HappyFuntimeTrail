@@ -1,0 +1,6 @@
+.col-md-4.trail.center
+  %h5= trail.name
+  %a{href: trail_path(trail)}
+    %img{src: trail.static_img_url(300, 300)}
+  .trail-description
+    %p= trail.description
