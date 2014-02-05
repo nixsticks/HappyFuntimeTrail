@@ -106,6 +106,10 @@ nav {
     list-style-type: none;
     margin: 0px 10px 0px 10px; 
   }
+
+  a, a:hover {
+    text-decoration: none;
+  }
 }
 
 .right {
@@ -328,6 +332,10 @@ footer {
     @include form(30px);
     @include border-radius(2px);
     border: 0;
+  }
+
+  input[id*="attachment"] {
+    color: white;
   }
 
   .form-group {
