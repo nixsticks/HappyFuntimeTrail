@@ -1,15 +1,15 @@
-%ul{class: "left scroll-header", data:{scroll:{header:"true"}}}
+%ul{class: "left", data:{scroll:{header:"true"}}}
 
   / %li 
   /   %a{class: "#logo", href: "#hero", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "false"}}GeoTreasure
   - if !@home_page
     %li
-      %a{href: "/#hero", class: "logo", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "false"}}GeoTreasure
+      %a{href: "/#hero", class: "logo", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "true"}}GeoTreasure
   - if @home_page
     %li
-      %a{href: "#about", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "false"}}About GeoTreasure
+      %a{href: "#about", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "true"}}About GeoTreasure
     %li
-      %a{href: "#instructions", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "false"}}How It Works
+      %a{href: "#instructions", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "true"}}How It Works
     %li
-      %a{href: "#start", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "false"}}Get Started
+      %a{href: "#start", data: {scroll: "true", speed: "500", easing: "easeInOutCubic", url: "true"}}Get Started
 

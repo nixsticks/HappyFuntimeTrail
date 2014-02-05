@@ -1,5 +1,8 @@
 $(document).ready(function(){
   var $header = $("nav");
+  var windowHeight = $(window).height(); 
+  console.log(windowHeight);
+  $(".section_index").css("height", windowHeight);
 
   $header.addClass("down");
   
@@ -10,6 +13,8 @@ $(document).ready(function(){
       $header.removeClass("down");
     }
   });
+
+
   
   // $(function() {
   //   $('#slides').slidesjs({
