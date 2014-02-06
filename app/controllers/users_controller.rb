@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       redirect_to @user
     else
       render action: "edit"
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     current_user.stop_trail
     redirect_to root_path
   end
-
+ 
   private
 
     def user_params

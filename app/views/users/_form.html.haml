@@ -5,7 +5,7 @@
 	.form
 		- unless @user.id.nil?
 			= f.label 'User Icon'
-			= f.file_field :avatar
+			= f.file_field :avatar, id: "attachment"
 
 		-if @user.id.nil?
 			= f.label :username 

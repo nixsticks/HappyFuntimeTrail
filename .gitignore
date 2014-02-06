@@ -17,3 +17,6 @@
 
 # Ignore all media
 /public/system/*
+
+# Ignore DS_STORE
+/app/assets/.DS_Store
