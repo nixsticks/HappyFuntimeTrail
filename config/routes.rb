@@ -38,6 +38,9 @@ HappyFuntimeTrail::Application.routes.draw do
 
   get '/test' => "pages#test"
 
+  match "*path", :to => "application#render_not_found", :via => :all
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

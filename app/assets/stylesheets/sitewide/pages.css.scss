@@ -60,6 +60,12 @@ $darkestBlue: rgb(5, 17, 40);
         box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
 }
 
+@mixin section-shadow {
+  -webkit-box-shadow: 0px 50px rgba(0, 0, 0, 0.8);
+     -moz-box-shadow: 0px 50px rgba(0, 0, 0, 0.8);
+          box-shadow: 0px 50px rgba(0, 0, 0, 0.8);
+} 
+
 @mixin form($height) {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -162,7 +168,8 @@ nav {
 //index page sections
 
 #hero {
-  background-image: url(../old_map2.jpg);
+  background: url(../old_map2.jpg) 50% 0 repeat fixed; 
+  min-height: 700px; ;
   height: 700px;
   h1 {
     margin-top: 100px;
@@ -199,21 +206,42 @@ nav {
 
 }
 
+.section_header {
+  font-size: 3em;
+}
+
 .section_index {
   height: 700px;
   h1, h2, h3 {
     text-align: center;
-    // margin-top: 50px; 
   }
-  h1 {
-    font-size: 3em;
-  } 
   p {
     margin-top: 50px;
-    // font-size: 2em;
   }
 }
 
+.not_found {
+  div {
+    width: 39%;
+    word-wrap: break-word;
+  }
+  position: absolute;
+  padding-top: 60px;
+  margin-top: -40px;  
+  width: 100%;
+  top: 0px;
+  height: 768px;
+  background-image: url(../treasure_404.jpg);
+  @include section-shadow;
+  z-index: 1;
+}
+
+.not_found_section {
+  display: block;
+  background-color: $darkBlue;
+  width: 100%;
+  height: 1400px;
+}
 // footer
 
 footer {
