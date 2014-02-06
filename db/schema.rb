@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205163758) do
+ActiveRecord::Schema.define(version: 20140206203951) do
 
   create_table "addresses", force: true do |t|
     t.string  "line1"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20140205163758) do
     t.datetime "updated_at"
     t.integer  "creator_id"
     t.string   "name"
+    t.string   "image_remote_url"
   end
 
   create_table "users", force: true do |t|
