@@ -2,12 +2,14 @@
   .container
     .center.title
       %h1 All Trails
+    .center.order
+      %p
+        order by:
+        %br
+        #{link_to 'popularity', '?order_by=popularity&page=1'} | #{link_to 'name', '?order_by=name&page=1'} | #{link_to 'newest', '?order_by=newest&page=1'} | #{link_to 'oldest', '?order_by=oldest&page=1'}
 
     .trail-container
       - @trails.each do |trail|
         = render trail
     
     = will_paginate
-
-    .order
-      %p order by: #{link_to 'popularity', '?order_by=popularity&page=1'} | #{link_to 'name', '?order_by=name&page=1'} | #{link_to 'newest', '?order_by=newest&page=1'} | #{link_to 'oldest', '?order_by=oldest&page=1'}
