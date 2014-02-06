@@ -1,7 +1,7 @@
 .col-md-4.trail.center
   %h2= trail.name
   %a{href: trail_path(trail)}
-  = image_tag trail.image.url(:medium)
+    = image_tag trail.image.url(:medium)
   .trail-description
     %p
       = trail.description
