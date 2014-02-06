@@ -26,7 +26,19 @@ class Trail < ActiveRecord::Base
 
 
   def set_trail_image(image_url)
-    self.image = open(image_url)
+    extname = File.extname(image_url)
+    basename = File.basename(image_url, extname)
+
+    file = Tempfile.new([basename, extname])
+    file.binmode
+
+    open(URI.parse(image_url)) do |data|  
+      file.write data.read
+    end
+
+    file.rewind
+
+    self.image = file
   end
 
   def next_pin(pin, user) #pass in user's current pin

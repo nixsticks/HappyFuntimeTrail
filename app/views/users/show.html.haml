@@ -1,6 +1,7 @@
 .darkblue
   .center.title
     %h1= @user.username
+    = image_tag @user.avatar.url(:medium)
   .user.col-md-4.col-md-offset-4
     - if @user == current_user
       = render 'current_user'
