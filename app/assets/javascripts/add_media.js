@@ -7,6 +7,29 @@ var map;
 
 $(document).ready(function(){
   initialize();
+  var $forms = $(".edit_pin");
+  $forms.on("ajax:success", function(e, data, status, xhr) {
+    var $this = $(this);
+
+    $this.find(":input").each(function(){
+      if (this.type === "file") {
+        $(this).replaceWith($(this).val("").clone(true));
+      } else if (this.type!== "hidden" && this.type !== "submit") {
+        $(this).val("");
+      }
+    });
+
+    $this.append("<h3 id='remove'>Success!</h3>");
+
+    setTimeout(function() {
+      $("#remove").fadeOut("slow", function() {
+        $(this).remove();
+      });
+    }, 5000);
+
+  }).bind("ajax:error", function(e, xhr, status, error) {
+    $(this).append("<h3>" + error + "</h3>");
+  });
 });
 
 function initialize() {

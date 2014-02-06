@@ -14,6 +14,3 @@
   - @user.followed_trails.each do |trail|
     %h5= link_to trail.name, trail
     %p= trail.description
-
-%button{class: 'btn btn-default'}
-  = link_to 'New Trail', new_trail_path

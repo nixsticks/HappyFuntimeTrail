@@ -9,6 +9,7 @@ gem 'jquery-ui-rails'
 gem 'geocoder'
 gem 'paperclip'
 gem 'will_paginate', '~> 3.0.5'
+gem 'remotipart'
 
 # Use sqlite3 as the database for Active Record
 
