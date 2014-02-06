@@ -2,9 +2,10 @@
   .container
     .center.title
       %h1 Users
-
-    .center
-      - @users.each do |user|
+  
+    - @users.each do |user|
+      .col-md-2.center
+        = image_tag user.avatar.url(:medium), class: "medium"
         %h3= link_to "#{user.username}", user
 
     = will_paginate
