@@ -14,6 +14,7 @@ class TrailsController < ApplicationController
   def create
     @trail = Trail.new(trail_params)
     if @trail.save
+      @trail.set_trail_image
       flash[:success] = "Trail created!"
       @trail.increment_stepnumbers
       @trail.set_length
