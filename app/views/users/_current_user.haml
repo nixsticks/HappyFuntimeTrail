@@ -1,14 +1,13 @@
 - unless @user.created_trails.empty?
-  %h3 Your trails:
+  %h2 Your trails:
   - @user.created_trails.each do |trail|
     %h5 #{link_to trail.name, trail} (#{link_to 'Edit', edit_trail_path(trail)} | #{link_to 'Delete', trail, method: "DELETE", data: {confirm: "Are you sure?"}})
     %p= trail.description
-    %img
 - else
   %p You haven't created any trails yet!
 
 - unless @user.followed_trails.empty?
-  %h3 Trails you've completed
+  %h2 Trails you've completed
   - @user.followed_trails.each do |trail|
     %h5= link_to trail.name, trail
     %p= trail.description
