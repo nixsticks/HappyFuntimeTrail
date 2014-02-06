@@ -328,7 +328,12 @@ footer {
     color: white;
     text-decoration: none;
   }
+  overflow-y: auto;
   // z-index: 1000;
+}
+
+.media {
+  overflow-y: auto;
 }
 
 .right-container form {
@@ -410,6 +415,10 @@ ol.panels {
 
 .button.inpanel a:hover, .button.inpanel input:hover {
   @include button-hover;
+}
+
+.button.inpanel.small input {
+  width: auto;
 }
 
 .gm-style-cc {

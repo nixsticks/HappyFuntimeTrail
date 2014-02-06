@@ -1,49 +1,56 @@
 = content_tag :div, class: "pin-data", data: {pin: @pin} do |pin|
   - nil
 
--if @pin == @trail.pins.last && current_user.followed_trails.include?(@trail)
-  =render 'win_pin'
+.row.map-container
+  .center-panel.col-md-8.nogutter
+    #map-canvas.large
 
-.center.page-header
-  %h1= @pin.name
+  .right-panel.col-md-4.nogutter
+    .right-container
+      -if @pin == @trail.pins.last && current_user.followed_trails.include?(@trail)
+        =render 'win_pin'
 
-%h3= @pin.address
-%p #{@pin.latitude.round(4)}, #{@pin.longitude.round(4)}
+      .center
+        %h1= @pin.name
+        %h3= @pin.address
+        %h3 #{@pin.latitude.round(4)}, #{@pin.longitude.round(4)}
 
-#map-canvas
-
-.center
-  .media
-    - @pin.images.each do |image|
-      .image
-        = image_tag image.attachment.url(:medium), class: "img-thumbnail"
-        = form_for :image, url: '/delete_image', method: :post do |f|
-          = f.hidden_field :destroy, name: '_method', value: 'delete'
-          = f.hidden_field :id, value: image.id
-          = f.submit 'Delete image', class: "btn btn-default"
-    - @pin.videos.each do |video|
-      .video
-        %video{width: "320", height: "240", controls: true}
-          %source{src: "#{video.attachment.url}"}
-        = form_for :video, url: '/delete_video', method: :post do |f|
-          = f.hidden_field :destroy, name: '_method', value: 'delete'
-          = f.hidden_field :id, value: video.id
-          = f.submit 'Delete video', class: "btn btn-default"
-    - @pin.audios.each do |audio|
-      .audio
-        %audio{controls: true}
-          %source{src: "#{audio.attachment.url}"}
-          Your browser does not support this audio format.
-        = form_for :audio, url: '/delete_audio', method: :post do |f|
-          = f.hidden_field :destroy, name: '_method', value: 'delete'
-          = f.hidden_field :id, value: audio.id
-          = f.submit 'Delete audio', class: "btn btn-default"
-    - @pin.texts.each do |text|
-      .text
-        = text.content
-        = form_for :text, url: '/delete_text', method: :post do |f|
-          = f.hidden_field :destroy, name: '_method', value: 'delete'
-          = f.hidden_field :id, value: text.id
-          = f.submit 'Delete text', class: "btn btn-default"
+      .center
+        .media
+          - @pin.images.each do |image|
+            .image
+              = image_tag image.attachment.url(:medium), class: "img-thumbnail"
+              = form_for :image, url: '/delete_image', method: :post, remote:true, authenticity_token: true do |f|
+                = f.hidden_field :destroy, name: '_method', value: 'delete'
+                = f.hidden_field :id, value: image.id
+                .button.inpanel.small
+                  = f.submit 'Delete image'
+          - @pin.videos.each do |video|
+            .video
+              %video{width: "320", height: "240", controls: true}
+                %source{src: "#{video.attachment.url}"}
+              = form_for :video, url: '/delete_video', method: :post, remote:true, authenticity_token: true do |f|
+                = f.hidden_field :destroy, name: '_method', value: 'delete'
+                = f.hidden_field :id, value: video.id
+                .button.inpanel.small
+                  = f.submit 'Delete video'
+          - @pin.audios.each do |audio|
+            .audio
+              %audio{controls: true}
+                %source{src: "#{audio.attachment.url}"}
+                Your browser does not support this audio format.
+              = form_for :audio, url: '/delete_audio', method: :post, remote:true, authenticity_token: true do |f|
+                = f.hidden_field :destroy, name: '_method', value: 'delete'
+                = f.hidden_field :id, value: audio.id
+                .button.inpanel.small
+                  = f.submit 'Delete audio'
+          - @pin.texts.each do |text|
+            .text
+              = text.content
+              = form_for :text, url: '/delete_text', method: :post, remote:true, authenticity_token: true do |f|
+                = f.hidden_field :destroy, name: '_method', value: 'delete'
+                = f.hidden_field :id, value: text.id
+                .button.inpanel.small
+                  = f.submit 'Delete text'
 
 = javascript_include_tag :pin
