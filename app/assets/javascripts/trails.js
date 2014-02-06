@@ -49,7 +49,7 @@ function initialize() {
 function clickMarker(marker, pin) {
   google.maps.event.addListener(marker, 'click', function(event) {
     infowindow.setContent(
-      '<p>' + pin.address + "<br/>(" + pin.name + ")" +'</p>'
+      '<p>' + pin.name +'</p>'
     );
     infowindow.open(map, marker);
   });

@@ -25,8 +25,9 @@ class PinsController < ApplicationController
 
   def update
     @pin = Pin.find(params[:id])
-    @pin.update_attributes(pin_params)
-    redirect_to trail_pin_path(@pin.trail, @pin.stepnumber)
+    raise "error" unless @pin.update_attributes(pin_params)
+
+    render nothing: true  
   end
 
   def destroy
