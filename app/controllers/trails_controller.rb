@@ -55,6 +55,11 @@ class TrailsController < ApplicationController
     end
   end
 
+  def raw
+    @trail = Trail.find(params[:id])
+    render :layout => 'raw'
+  end
+
   def order_pins
     @trail = Trail.find(params[:id])
     @pins = @trail.pins.order(:stepnumber)

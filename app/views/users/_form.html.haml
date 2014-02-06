@@ -3,6 +3,10 @@
 	=render 'shared/error_messages'
 	
 	.form
+		- unless @user.id.nil?
+			= f.label 'User Icon'
+			= f.file_field :avatar
+
 		-if @user.id.nil?
 			= f.label :username 
 			= f.text_field :username 

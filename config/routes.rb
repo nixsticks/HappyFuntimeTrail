@@ -23,6 +23,8 @@ HappyFuntimeTrail::Application.routes.draw do
   
   post '/trails/:id/start' => 'trails#start', as: :trail_start
   
+  get '/trails/:id/raw' => 'trails#raw', as: :trail_raw
+
   get '/trails/:id/order_pins' => 'trails#order_pins', as: :trail_order_pins
 
   get '/trails/:id/add_media' => 'trails#add_media', as: :trail_add_media
