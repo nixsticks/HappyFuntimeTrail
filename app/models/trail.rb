@@ -2,8 +2,6 @@ require 'open-uri'
 
 class Trail < ActiveRecord::Base
 
-  attr_accessor image_remote_url_file_name
-  
   has_many :tag_trails
   has_many :tags, through: :tag_trails
   belongs_to :creator,
@@ -18,21 +16,10 @@ class Trail < ActiveRecord::Base
   has_many :pins, order: 'stepnumber ASC', dependent: :destroy
   accepts_nested_attributes_for :pins, :reject_if => proc { |pin| pin[:address].blank? }, allow_destroy: true
 
-  has_attached_file :image_remote_url  #a snapshot of the trail
-
   validates :name, presence: true
   validates :description, presence: true, length: {minimum: 10}
-  validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
+  # validates_presence_of :image_remote_url, :if => :image_url_provided?, :message => 'is invalid or inaccessible'
 
-
-
-  def set_trail_image(image_url)
-    self.image_remote_url = URI.parse(image_url)
-  end
-
-  def image_url_provided?
-    !self.image_remote_url.blank?
-  end
 
   def next_pin(pin, user) #pass in user's current pin
     if pins.last.stepnumber == pin.stepnumber
