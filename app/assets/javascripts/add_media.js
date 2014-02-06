@@ -83,15 +83,23 @@ function bindAjax() {
       }
     });
 
-    $this.append("<h3 id='remove'>Success!</h3>");
+    $this.append("<h3 class='remove'>Success!</h3>");
 
     setTimeout(function() {
-      $("#remove").fadeOut("slow", function() {
+      $(".remove").fadeOut("slow", function() {
         $(this).remove();
       });
     }, 5000);
 
-  }).bind("ajax:error", function(e, xhr, status, error) {
-    $(this).append("<h3>" + error + "</h3>");
+  })
+
+  $forms.on("ajax:error", function(e, xhr, status, error) {
+    $(this).append("<h3 class='remove'>Sorry, there was an error saving your pin.</h3>");
+    
+    setTimeout(function() {
+      $(".remove").fadeOut("slow", function() {
+        $(this).remove();
+      });
+    }, 5000);
   });
 }

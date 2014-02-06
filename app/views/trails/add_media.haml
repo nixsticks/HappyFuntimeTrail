@@ -42,8 +42,8 @@
                   %br
                   = video.file_field :attachment
                   = video.hidden_field :user_id, value: current_user.id, class: 'form-control'
-              .button
-                =f.submit "Add media!", class: "btn btn-default"
+              .button.inpanel
+                =f.submit "Add media!"
     .button.bottom
       = link_to "Done!", @trail
 

@@ -21,12 +21,7 @@ function bindAjax() {
   var $forms = $("form");
   console.log($forms);
   $forms.on("ajax:success", function(e, data, status, xhr) {
-    var $this = $(this);
-
-    $this.parent().children().each(function() {
-      console.log($(this));
-      $(this).remove();
-    });
+    $(this).parent().remove();
   }).bind("ajax:error", function(e, xhr, status, error) {
     $(this).append("<h3>" + error + "</h3>");
   });
