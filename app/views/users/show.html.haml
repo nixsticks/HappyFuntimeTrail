@@ -1,7 +1,9 @@
 .darkblue
   .center.title
     %h1= @user.username
-    = image_tag @user.avatar.url(:medium)
+    = image_tag @user.avatar.url(:thumb), class: "medium"
+    - if @user == current_user
+      %p= link_to 'Edit Profile', edit_user_path(@user)
   .user.col-md-4.col-md-offset-4
     - if @user == current_user
       = render 'current_user'

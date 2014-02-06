@@ -371,10 +371,6 @@ footer {
     border: 0;
   }
 
-  input[id*="attachment"] {
-    color: white;
-  }
-
   .form-group {
     margin: 10px 0;
   }
@@ -583,6 +579,15 @@ a.add_nested_fields {
   }
   padding: 30px;
   text-align: right;
+}
+
+input[id*="attachment"] {
+  color: white;
+}
+
+.medium {
+  height: 100px;
+  width: 100px;
 }
 
 // clearfix
