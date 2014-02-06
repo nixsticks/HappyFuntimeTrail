@@ -43,7 +43,7 @@ nav {
   width: 100%;
   height: 50px;
   text-align: center;
-  z-index: 1;
+  z-index: 2;
   -webkit-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
   -moz-box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
   box-shadow: 0px 4px 10px 0px rgba(100, 100, 100, 0.75);
@@ -56,6 +56,8 @@ nav {
     display: inline-block;
     list-style-type: none;
     margin: 0px 10px 0px 10px; }
+  nav a, nav a:hover {
+    text-decoration: none; }
 
 .right {
   float: right; }
@@ -73,7 +75,7 @@ nav {
   position: absolute;
   display: inline-block;
   left: 50%;
-  margin-left: -38px; }
+  margin-left: -40px; }
   .compass img {
     width: 100px;
     height: 100px; }
@@ -201,13 +203,16 @@ footer {
   -moz-border-radius: 0 0 5px 5px;
   -ms-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
-  z-index: 999; }
+  z-index: 1; }
 
 .right-container {
   padding: 15px 15px 0 15px; }
 
 .float-container {
   padding: 0 30px 15px 15px; }
+  .float-container a {
+    color: white;
+    text-decoration: none; }
 
 .right-container form input, .right-container form textarea {
   margin-top: 5px;
@@ -221,6 +226,8 @@ footer {
   -ms-border-radius: 2px;
   border-radius: 2px;
   border: 0; }
+.right-container form input[id*="attachment"] {
+  color: white; }
 .right-container form .form-group {
   margin: 10px 0; }
 .right-container form label {
@@ -247,7 +254,7 @@ ol.panels {
   bottom: 25px;
   left: 50%;
   margin-left: -100px;
-  z-index: 999; }
+  z-index: 0.5; }
   .button.bottom a, .button.bottom input {
     display: inline-block;
     padding: 10px;
@@ -316,6 +323,16 @@ ol.panels {
 
 .gm-style-cc {
   display: none; }
+
+.gm-style-iw {
+  color: black; }
+
+#raw-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
 
 .media {
   padding-bottom: 20px; }
