@@ -6,7 +6,7 @@
   .float-panel.col-md-3.nogutter
     .float-container
       %h1= @trail.name
-      %h3 by #{@trail.creator.username}
+      %h3 by 
       %p= @trail.description
       .button.inpanel
         = link_to 'Start Trail', trail_start_path(@trail), method: :post

@@ -3,7 +3,16 @@ var pins = $('.pin-data').data('pins');
 
 var latlngs = [];
 
-var map = new google.maps.Map(document.getElementById('map-canvas'), {mapTypeId: google.maps.MapTypeId.HYBRID});
+var layer = "watercolor";
+
+var map = new google.maps.Map(document.getElementById('map-canvas'), {
+  mapTypeId: layer,
+  mapTypeControlOptions: {
+        mapTypeIds: [layer]
+    }
+});
+map.mapTypes.set(layer, new google.maps.StamenMapType(layer));
+
 
 var infowindow = new google.maps.InfoWindow();
 
