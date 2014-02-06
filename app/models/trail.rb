@@ -21,7 +21,6 @@ class Trail < ActiveRecord::Base
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }  #a snapshot of the trail
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
 
-
   validates :name, presence: true
   validates :description, presence: true, length: {minimum: 10}
 
