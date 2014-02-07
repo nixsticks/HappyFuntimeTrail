@@ -1,14 +1,19 @@
 // get pin information from pin-data
 var pins = $('.pin-data').data('pins');
+var layer = "watercolor";
 
 var latlngs = [];
 
 var mapOptions = {
-  mapTypeId: google.maps.MapTypeId.HYBRID,
+  mapTypeId: layer,
+  mapTypeControlOptions: {
+        mapTypeIds: [layer]
+    },
   disableDefaultUI: true
 }
 
 var map = new google.maps.Map(document.getElementById('raw-container'), mapOptions);
+map.mapTypes.set(layer, new google.maps.StamenMapType(layer));
 
 var infowindow = new google.maps.InfoWindow();
 
