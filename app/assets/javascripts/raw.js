@@ -4,6 +4,8 @@ var layer = "watercolor";
 
 var latlngs = [];
 
+
+
 var mapOptions = {
   mapTypeId: layer,
   mapTypeControlOptions: {
@@ -17,9 +19,8 @@ map.mapTypes.set(layer, new google.maps.StamenMapType(layer));
 
 var infowindow = new google.maps.InfoWindow();
 
-$(document).ready(function(){
-  initialize();
-});
+initialize(); //not in docready because i want it to load while page is loading
+
 
 function initialize() {
   // set down a marker for each pin; bind click event handler to marker
@@ -33,6 +34,7 @@ function initialize() {
       icon: "/assets/number_" + pin.stepnumber + ".png",
       title: 'Treasure Hunt!'
     });
+    
   }
 
   // set up the map with bounds, center, and polyline

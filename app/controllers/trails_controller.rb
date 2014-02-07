@@ -14,7 +14,7 @@ class TrailsController < ApplicationController
   def create
     @trail = Trail.new(trail_params)
     if @trail.save
-      @trail.set_trail_image
+      # @trail.set_trail_image("http://api.webthumbnail.org?width=400&height=500&screen=1024&url=geotreasure")
       flash[:success] = "Trail created!"
       @trail.increment_stepnumbers
       @trail.set_length
