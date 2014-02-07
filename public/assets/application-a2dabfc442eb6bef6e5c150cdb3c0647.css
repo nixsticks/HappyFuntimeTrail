@@ -88,7 +88,8 @@ nav {
     cursor: pointer; }
 
 #hero {
-  background-image: url(../old_map2.jpg);
+  background: url("/assets/old_map2.jpg") 50% 0 repeat fixed;
+  min-height: 700px;
   height: 700px; }
   #hero h1 {
     margin-top: 100px;
@@ -115,14 +116,37 @@ nav {
     margin: 0px;
     margin-top: 20px; }
 
+.section_header {
+  font-size: 3em; }
+
 .section_index {
   height: 700px; }
   .section_index h1, .section_index h2, .section_index h3 {
     text-align: center; }
-  .section_index h1 {
-    font-size: 3em; }
   .section_index p {
     margin-top: 50px; }
+
+.not_found {
+  position: absolute;
+  padding-top: 60px;
+  margin-top: -40px;
+  width: 100%;
+  top: 0px;
+  height: 768px;
+  background-image: url("/assets/treasure_404.jpg"); }
+  .not_found div {
+    width: 39%;
+    word-wrap: break-word; }
+
+.not_found_section {
+  display: block;
+  background-color: #033649;
+  width: 100%;
+  height: 1400px;
+  z-index: 1;
+  -webkit-box-shadow: 0px -7px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 0px -7px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: 0px -7px 5px 0px rgba(50, 50, 50, 0.75); }
 
 footer {
   padding: 30px;
@@ -209,10 +233,14 @@ footer {
   padding: 15px 15px 0 15px; }
 
 .float-container {
-  padding: 0 30px 15px 15px; }
+  padding: 0 30px 15px 15px;
+  overflow-y: auto; }
   .float-container a {
     color: white;
     text-decoration: none; }
+
+.media {
+  overflow-y: auto; }
 
 .right-container form input, .right-container form textarea {
   margin-top: 5px;
@@ -226,8 +254,6 @@ footer {
   -ms-border-radius: 2px;
   border-radius: 2px;
   border: 0; }
-.right-container form input[id*="attachment"] {
-  color: white; }
 .right-container form .form-group {
   margin: 10px 0; }
 .right-container form label {
@@ -320,6 +346,9 @@ ol.panels {
   color: white;
   background-color: #033649;
   border: 2px solid white; }
+
+.button.inpanel.small input {
+  width: auto; }
 
 .gm-style-cc {
   display: none; }
@@ -427,6 +456,13 @@ a.add_nested_fields {
   .pagination li {
     list-style: none;
     display: inline-block; }
+
+input[id*="attachment"] {
+  color: white; }
+
+.medium {
+  height: 100px;
+  width: 100px; }
 
 .cf:before,
 .cf:after {
