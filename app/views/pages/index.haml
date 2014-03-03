@@ -7,19 +7,24 @@
   .row
     %h1{class: "section_header col-md-12"} About GeoTreasure
   .row
-    %p{class: "col-md-9 col-md-offset-2"}
-      Remeber those treasure hunts you went on as a kid? Geo Treasure aims to connect the physical/virtual world through exploration.
+    .col-md-9.col-md-offset-2
+      %p
+        Remeber those treasure hunts you went on as a kid? GeoTreasure connects the virtual and physical world by letting you create treasure hunt trails that you can send your friends along. Using Google Maps API, GeaTreasure allows you to drop pins across a map that you would like to send your friends along and upload media "treasure" (videos, songs, pictures and text) to those pins. Your friends will only be able to see the content you've uploaded to a pin when they are at the pins location.
+      %p 
+        GeoTreasure is great for if you're looking to send your tourist friends on a tour of your city, or simply for having fun. <a href="/signup">Sign up</a> and start making trails now! 
 
   
 .section_index{id: "instructions"}
   .row
     %h1{class: "section_header col-md-12"} How It Works
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  .tutorial
+    .row
+      .col-md-4
+        %h3 Set your pins
+        =image_tag("GeoTreasure_Tutorial/GEO_NameDescribeSetPins.png", :class => "tutorial")
+    
+
+       
 
 .section_index#sample_trails
   =render "sample_trails"

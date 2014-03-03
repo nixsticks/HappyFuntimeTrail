@@ -21,7 +21,6 @@ var infowindow = new google.maps.InfoWindow();
 
 initialize(); //not in docready because i want it to load while page is loading
 
-
 function initialize() {
   // set down a marker for each pin; bind click event handler to marker
   for (var i = 0, pin; pin = pins[i]; i++) {
