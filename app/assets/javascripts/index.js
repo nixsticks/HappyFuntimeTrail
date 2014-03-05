@@ -1,10 +1,12 @@
 $(document).ready(function(){
   var $header = $("nav");
   var windowHeight = $(window).height();
-  var $bgobj = $('#hero');
+  var $bgobjs = [$('#hero'), $('#start')];
+  var ratioParxSect = 1.81;
+  $bgobjs[1].height(windowHeight/ratioParxSect) 
  
   console.log(windowHeight);
-  $(".section_index").css("height", windowHeight);
+  $(".section_index").not("#start").css("height", windowHeight);
 
   $header.addClass("down");
   
@@ -15,11 +17,28 @@ $(document).ready(function(){
       $header.removeClass("down");
     }
   });
-
-  $(window).scroll(function() {   //for parallax effect on hero
-    var yPos = -($(this).scrollTop() / $bgobj.data('speed'));
-    var coords = '50% '+ yPos + 'px';
-    $bgobj.css("background-position", coords);
+  
+  $(window).on("resize", function(){
+    if ($(this).width() < 980) {
+      $("#sample_trails").hide();
+    } else {
+      $("sample_trails").show();
+    }
+  })
+  //for parallax effect on hero
+  $(window).scroll(function() {
+    $this = $(this)
+    console.log($this.scrollTop())
+    
+    $.each($bgobjs, function(index, obj) {
+      var yPos = -($this.scrollTop() / obj.data('speed'));
+      var coords = '50% '+ yPos + 'px';
+      obj.css("background-position", coords);
+    })    
   });   
 
 });
+
+// $.each([ 52, 97 ], function( index, value ) {
+//   alert( index + ": " + value );
+// });

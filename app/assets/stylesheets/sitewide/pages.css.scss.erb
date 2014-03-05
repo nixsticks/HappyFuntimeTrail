@@ -169,7 +169,7 @@ nav {
 
 #hero {
   background: url('<%= asset_path "old_map2.jpg" %>') 50% 0 repeat fixed; 
-  min-height: 700px; ;
+  min-height: 700px; 
   height: 700px;
   h1 {
     margin-top: 100px;
@@ -187,7 +187,45 @@ nav {
   background-color: $darkBlue;
 }
 
+.absolute {
+  z-index: -1;
+  background-color: $darkBlue;
+  width: 100%;
+  position: absolute;
+}
+
+#start {
+  z-index: 1;
+  color: white;
+  background: url('<%= asset_path "stamen_manhattan_big.png" %>') 50% 0 repeat fixed;  
+  position: relative;
+  top: -100px;
+  height: 600px;
+  width: 100%;
+    .signup_headers {
+      position: relative;
+      top: 200px;
+      font-size: 2em;
+      opacity: 0.70;
+      h1 {
+        background-color: $darkestBlue;
+        @include header-shadow
+      }
+    }
+
+  // poop
+  a {
+    color: $lightYellow;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+
+
+}
+
 #sample_trails {
+  z-index: 2;
   padding: 50px;
   min-height: 500px;
   background-color: $darkestBlue;
