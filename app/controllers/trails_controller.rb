@@ -12,7 +12,6 @@ class TrailsController < ApplicationController
   end
 
   def create
-    debugger
     @trail = Trail.new(trail_params)
     if @trail.save
       # @trail.set_trail_image("http://api.webthumbnail.org?width=400&height=500&screen=1024&url=geotreasure")
