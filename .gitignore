@@ -20,3 +20,5 @@
 
 # Ignore DS_STORE
 /app/assets/.DS_Store
+
+.DS_Store
