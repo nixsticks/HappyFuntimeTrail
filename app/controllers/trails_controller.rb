@@ -12,17 +12,14 @@ class TrailsController < ApplicationController
   end
 
   def create
-    debugger
     @trail = Trail.new(trail_params)
     if @trail.save
       # @trail.set_trail_image("http://api.webthumbnail.org?width=400&height=500&screen=1024&url=geotreasure")
-      flash[:success] = "Trail created!"
       @trail.increment_stepnumbers
       @trail.set_length
       @trail.set_popularity
       redirect_to trail_order_pins_path(@trail)
     else
-      flash.now[:error] = "Unable to save trail."
       render 'new'
     end
   end

@@ -14,6 +14,8 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery.remotipart
+//= require jquery.fancybox.js
+//= require jquery.mousewheel-3.0.6.pack
 //= require jquery_nested_form
 //= require turbolinks
 //= require jquery-map

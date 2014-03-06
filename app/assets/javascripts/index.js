@@ -1,9 +1,9 @@
 $(document).ready(function(){
   var $header = $("nav");
   var windowHeight = $(window).height();
-  var $bgobjs = [$('#hero'), $('#start')];
+  var $bgobjs = [$('#hero')];
   var ratioParxSect = 1.81;
-  $bgobjs[1].height(windowHeight/ratioParxSect) 
+  // $bgobjs[1].height(windowHeight/ratioParxSect) 
  
   console.log(windowHeight);
   $(".section_index").not("#start").css("height", windowHeight);
@@ -25,17 +25,35 @@ $(document).ready(function(){
       $("sample_trails").show();
     }
   })
+
   //for parallax effect on hero
   $(window).scroll(function() {
-    $this = $(this)
-    console.log($this.scrollTop())
-    
+    $windowObj = $(this)    
     $.each($bgobjs, function(index, obj) {
-      var yPos = -($this.scrollTop() / obj.data('speed'));
-      var coords = '50% '+ yPos + 'px';
-      obj.css("background-position", coords);
+      if (checkIfInView(obj)) {
+        var yPos = -($windowObj.scrollTop() / obj.data('speed'));
+        var coords = '50% '+ yPos + 'px';
+        obj.css("background-position", coords);
+      } else if (checkIfInView(obj)) {
+        console.log("HELLO")
+        console.log(obj.css("background-position"));
+        var yPos = -($windowObj.scrollTop() - obj.offset().top / obj.data('speed'));
+        var coords = '50% '+ yPos + 'px';
+        obj.css("background-position", coords);
+      }
     })    
-  });   
+  });
+
+  function checkIfInView(element){
+    var offset = element.offset().top - $(window).scrollTop();
+    console.log(offset);
+
+    if(offset > window.innerHeight){
+        // Not in view
+        return false;
+    }
+   return true;
+  } 
 
 });
 

@@ -4,25 +4,28 @@
     %h1{class: "col-md-9 col-md-offset-1"} Make trails. Add treasure. Share with friends.
 
 .section_index{id: "about"}
-  .row
-    %h1{class: "section_header col-md-12"} About GeoTreasure
-  .row
-    .col-md-9.col-md-offset-2
-      %p
-        Remeber those treasure hunts you went on as a kid? GeoTreasure connects the virtual and physical world by letting you create treasure hunt trails that you can send your friends along. Using Google Maps API, GeaTreasure allows you to drop pins across a map that you would like to send your friends along and upload media "treasure" (videos, songs, pictures and text) to those pins. Your friends will only be able to see the content you've uploaded to a pin when they are at the pins location.
-      %p 
-        GeoTreasure is great for if you're looking to send your tourist friends on a tour of your city, or simply for having fun. <a href="/signup">Sign up</a> and start making trails now! 
+  .container{class: "section_body"}
+    %h1{class: "section_header"} About GeoTreasure
+    %p
+      <span>Remeber those treasure hunts you went on as a kid?</span>
+      GeoTreasure connects the virtual and physical world by letting you create treasure hunt trails that you can send your friends along. Using Google Maps API, GeaTreasure allows you to drop pins across a map that you would like to send your friends along and upload media "treasure" (videos, songs, pictures and text) to those pins. Your friends will only be able to see the content you've uploaded to a pin when they are at the pins location.
+    %p 
+      GeoTreasure is great for if you're looking to send your tourist friends on a tour of your city, or simply for having fun. <a href="/signup">Sign up</a> and start making trails now! 
 
   
 .section_index{id: "instructions"}
   .row
     %h1{class: "section_header col-md-12"} How It Works
-  .tutorial
+  .container
+    %p Set your pins, give them nicknames, re-order them, and add your treasure! 
     .row
-      .col-md-4
-        %h3 Set your pins
-        =image_tag("GeoTreasure_Tutorial/GEO_NameDescribeSetPins.png", :class => "tutorial")
-    
+      .col-md-4.tutorial-pic
+        =image_tag("GeoTreasure_Tutorial/GEO_PinsAreSet.png")
+      .col-md-4.tutorial-pic
+        =image_tag("GeoTreasure_Tutorial/GEO_UploadMedia.png")
+      .col-md-4.tutorial-pic
+        =image_tag("GeoTreasure_Tutorial/GEO_StamenMap.png")
+      
 
        
 
@@ -40,3 +43,4 @@
 
 =javascript_include_tag :smooth_scroll
 =javascript_include_tag :index
+
