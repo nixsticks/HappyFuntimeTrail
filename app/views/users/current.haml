@@ -19,9 +19,10 @@
       = form_tag checkin_path, method: :post do
         %input{type: "hidden", id: "latitudeinput", name: "latitude"}
         %input{type: "hidden", id: "longitudeinput", name: "longitude"}
-        .button
+        .button.inpanel
           %input{type: "submit", value: "Check in", class: "btn btn-success"}
-      %a{href: "#{abandon_path}", class: "btn btn-danger", data: {confirm: "Are you sure you want to abandon this path?"}} Abandon Hope
+      .button.inpanel
+        %a{href: "#{abandon_path}", class: "btn btn-danger", data: {confirm: "Are you sure you want to abandon this path?"}} Abandon Hope
 
   .center-panel.col-md-10.nogutter
     #map-canvas.large
