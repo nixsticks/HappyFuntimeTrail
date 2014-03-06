@@ -4,18 +4,11 @@ $(document).ready(function(){
   var $bgobjs = [$('#hero')];
   var ratioParxSect = 1.81;
   // $bgobjs[1].height(windowHeight/ratioParxSect) 
- 
-  $(".tutorial-pic").fancybox({
-    'transitionIn'  : 'elastic',
-    'transitionOut' : 'elastic',
-    'speedIn'   : 600, 
-    'speedOut'    : 200, 
-    'hideOnContentClick' : false
-  });
+
 
   console.log(windowHeight);
   $(".section_index").not("#start").css("height", windowHeight);
-
+  $("#instructions").css("height", + "px");
   $header.addClass("down");
   
   $(window).scroll(function() {  //for header at top of page

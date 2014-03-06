@@ -17,22 +17,24 @@
   .row
     %h1{class: "section_header col-md-12"} How It Works
   .container
-    %p Set your pins, give them nicknames, re-order them, and add your treasure! 
     .row
-      .col-md-4.tutorial-pic
+      %p Set your pins, give them nicknames, re-order them, and add your treasure! 
+    .row
+      .col-md-4.tutorial-pic{style: "max-height: 180px;"}
         %a{"data-target" => "#PinsSet", "data-toggle" => "modal"}
           =image_tag("GeoTreasure_Tutorial/GEO_PinsAreSet.png")
-      .col-md-4.tutorial-pic
+      .col-md-4.tutorial-pic{style: "max-height: 150px;"}
         %a{"data-target" => "#UploadMedia", "data-toggle" => "modal"}
           =image_tag("GeoTreasure_Tutorial/GEO_UploadMedia.png")
-      .col-md-4.tutorial-pic
+      .col-md-4.tutorial-pic{style: "max-height: 150px;"}
         %a{"data-target" => "#StamenMap", "data-toggle" => "modal"}
           =image_tag("GeoTreasure_Tutorial/GEO_StamenMap.png")
-    / Button trigger modal
-  
+    / .row{style: "text-align: center; margin-top: 50px;"}
+    /   %p <a href="/trails/new"><span style="color: lightblue">Start creating your own trails</span></a>
+
   #PinsSet.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
     .modal-dialog.modal-lg
-      .modal-content
+      .modal-content.modal-color
         .modal-header
           %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
           %h4#myModalLabel.modal-title{style: "color: black; text-align: center;font-size: 2em;"} Set your pins and give them nicknames
@@ -44,7 +46,7 @@
 
   #UploadMedia.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
     .modal-dialog.modal-lg
-      .modal-content
+      .modal-content.modal-color
         .modal-header
           %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
           %h4#myModalLabel.modal-title{style: "color: black; text-align: center;font-size: 2em;"} Upload media to those pins
@@ -55,7 +57,7 @@
         
   #StamenMap.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
     .modal-dialog.modal-lg
-      .modal-content
+      .modal-content.modal-color
         .modal-header
           %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
           %h4#myModalLabel.modal-title{style: "color: black; text-align: center;font-size: 2em;"} Send a beautified version of your map to a friend!
