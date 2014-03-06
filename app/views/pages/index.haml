@@ -20,13 +20,52 @@
     %p Set your pins, give them nicknames, re-order them, and add your treasure! 
     .row
       .col-md-4.tutorial-pic
-        =image_tag("GeoTreasure_Tutorial/GEO_PinsAreSet.png")
+        %a{"data-target" => "#PinsSet", "data-toggle" => "modal"}
+          =image_tag("GeoTreasure_Tutorial/GEO_PinsAreSet.png")
       .col-md-4.tutorial-pic
-        =image_tag("GeoTreasure_Tutorial/GEO_UploadMedia.png")
+        %a{"data-target" => "#UploadMedia", "data-toggle" => "modal"}
+          =image_tag("GeoTreasure_Tutorial/GEO_UploadMedia.png")
       .col-md-4.tutorial-pic
-        =image_tag("GeoTreasure_Tutorial/GEO_StamenMap.png")
-      
+        %a{"data-target" => "#StamenMap", "data-toggle" => "modal"}
+          =image_tag("GeoTreasure_Tutorial/GEO_StamenMap.png")
+    / Button trigger modal
+  
+  #PinsSet.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title{style: "color: black; text-align: center;font-size: 2em;"} Set your pins and give them nicknames
+        .modal-body
+          .tutorial-pic
+            =image_tag("GeoTreasure_Tutorial/GEO_PinsAreSet.png", style: "width: 70%; margin-bottom: 50px;")
+        .modal-footer
+          
 
+  #UploadMedia.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title{style: "color: black; text-align: center;font-size: 2em;"} Upload media to those pins
+        .modal-body
+          .tutorial-pic
+            =image_tag("GeoTreasure_Tutorial/GEO_UploadMedia.png", style: "width: 70%;")
+        .modal-footer
+        
+  #StamenMap.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+          %h4#myModalLabel.modal-title{style: "color: black; text-align: center;font-size: 2em;"} Send a beautified version of your map to a friend!
+        .modal-body
+          .tutorial-pic
+            =image_tag("GeoTreasure_Tutorial/GEO_StamenMap.png", style: "width: 70%;")
+        .modal-footer
+          
+               
+            
        
 
 %div{class: "absolute"}
